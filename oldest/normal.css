@@ -1,0 +1,235 @@
+html {
+    overflow: auto;
+}
+
+body
+{
+	text-align:center;
+	margin:0px;
+	padding:0px;
+	overflow-x:hidden;
+	text-decoration:none!important;
+	background:url('resources/light_toast.png') #f0f0f0;
+}
+
+.top{
+
+	position:relative;
+	margin:0px auto;
+	width:512px;
+	background:#B7B7B7;
+	text-decoration:none;
+	z-index:0;
+	background:transparent;
+	top:50%;
+	padding-top:75px;
+}
+
+#home, #contact, #me, #stuff
+{
+	
+	margin-top:-240px;
+}
+
+.invisible
+{
+	
+	display:none;
+}
+
+#forms
+{
+	
+	position:relative;
+	top:30px;
+	width:450px;
+	left:50%;
+	margin-left:-225px;
+}
+#header
+{
+	height:150px;
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	padding:0px;
+	margin:0px;
+	background:url('resources/pattern2.jpg') #af5f3c;
+	box-shadow:0px 6px 0px #8b4b30;
+	z-index:3;
+}
+
+
+#nav
+{
+	z-index:1;
+	top:155px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+	-o-background-clip: text;
+	-o-text-fill-color: transparent;
+	text-decoration:none;
+
+}
+.links{
+
+	white-space:nowrap;
+	padding:10px;
+	padding-bottom:0px;
+	text-decoration:none;
+	color:gray;
+	font-family:Droid Sans;
+	font-size:65px;
+	font-weight:bold;
+	-webkit-text-stroke:1px gray;
+	-webkit-text-fill-color: rgba(0,0,0,0);
+	-webkit-transition:0.5s ease-out;
+	-o-transition:0.8s ease-out;
+	-moz-transition:0.8s ease-out;
+
+
+}
+
+.links:hover
+{
+	-webkit-text-fill-color: #991414;
+	
+}
+
+.slash
+{
+	padding:5px;
+	text-decoration:none;
+	color:gray;
+	font-family:Droid Sans;
+	font-size:65px;
+	font-weight:bold;
+	-webkit-text-stroke:1px gray;	
+}
+
+h1
+{
+	text-shadow:0 0 20px black;
+	-moz-text-shadow:0 0 20px black;
+	-o-text-shadow:0 0 20px black;
+	-webkit-text-shadow:0 0 20px black;
+	position:relative;
+	top:10px;
+	margin:0px;
+	font-family:Adelle;
+	font-size:65px;
+	color:white;
+
+}
+
+h3
+{
+	
+	font-family:Quattrocento;
+	font-size:50px;
+	font-variant:small-caps;
+	font-weight:bold;
+	margin-top:-5px;
+}
+
+h3:before
+{
+	content:"*";
+
+}
+.text{
+	
+	font-family:Quattrocento sans;
+	font-size:30px;
+	padding:0px;
+}
+
+#main{
+	background:transparent;
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+/*#snipped
+{
+
+	position:absolute;
+	bottom:0px;
+	width:100%;
+	height:12px;
+	background:url('resources/snipped.png');
+}*/
+
+h2
+{
+	font-family:ostrich;
+	color:white;
+	font-size:35px;
+	position:relative;
+	top:-11px;
+
+}
+
+
+a{
+	color:black;
+	text-decoration:none;
+}
+
+@media only screen 
+and (max-width: 416px){
+		
+	h1{
+		
+		font-size:42px;
+	}
+	
+#header
+{
+	height:110px;
+}
+	
+#nav{
+	top:115px;
+}	
+}
+
+
+@media only screen 
+and (max-width: 512px){
+
+	.top{
+		top:37%;
+		width:auto;
+	}
+
+
+	
+}
+@media only screen 
+and (max-width: 950px){
+
+.slash
+{
+	
+	display:none;
+}
+}
+ 
+::-webkit-scrollbar {
+height: 10px;
+width: 10px;
+background-color: #cfd3d2;
+}  
+            
+::-webkit-scrollbar-thumb:vertical {
+background-color: #fff;
+height: 50px; 
+}
