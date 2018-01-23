@@ -3,7 +3,7 @@
 	<head>
 		<title>Amos Jackson</title>
 		<meta charset="utf-8">
-		<meta id="viewport" name='viewport'>
+		<meta id="viewport" name='viewport' content="width=device-width, initial-scale=1">
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25862855-2"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
@@ -13,21 +13,43 @@
 		  gtag('config', 'UA-25862855-2');
 		</script>
 		<script>
-		    (function(doc) {
-		        var viewport = document.getElementById('viewport');
-		        if ( navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
-		            viewport.setAttribute("content", "initial-scale=0.5");
-		        } else if ( navigator.userAgent.match(/iPad/i) ) {
-		            viewport.setAttribute("content", "initial-scale=1");
-		        }
-		    }(document));
+		    var scroll, top_size, total;
+
+		    function scale(val) {
+		    	if(scroll < top_size) {
+		    		return 0;
+		    	} else if(scroll - top_size > total){
+		    		return val;
+		    	}
+
+		    	return val * (scroll - top_size)/total;
+		    }
+
+		    window.onload = function() {
+		    	var fg = document.getElementById("fg");
+		    	var bg = document.getElementById("bg");
+		    	top_size = document.getElementById("flexcontainer").scrollHeight / 2;
+		    	total = top_size + document.getElementById("fg").scrollHeight / 2;
+
+		    	window.onscroll = function() {
+		    		scroll = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0);
+
+
+		    		var rot = "rotate("+ scale(-8) +"deg)";
+		    		var fg_trans = "translateZ(" + scale(150) + "px)";
+		    		var bg_trans = "translateZ(" + scale(-190) + "px)"
+		    		fg.style.transform = fg_trans + rot;
+		    		bg.style.transform = "translateZ(-800px) scale(1.8)" + bg_trans + rot;
+		    	}
+
+		    };
 		</script>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 	</head>
 	<body>
 		<div id="front">
 			<nav>
-				<a href="#photos">Photos</a> <a href="#projects">Web Projects</a> <a href="#about">About</a>
+				<a href="#photos">Photos</a><a href="#projects">Web Projects</a><a href="cv.pdf">CV</a><a href="#about">About</a>
 			</nav>
 			<div id="flexcontainer">
 				<h1>Hi! I'm Amos.</h1>
@@ -35,7 +57,11 @@
 		</div>
 		<a href="http://photos.amosjackson.com" target="_blank">
 			<section id="photos">
-				<h2>I take photos</h2>
+				<div id="goat">
+					<span>I take photos</span>
+					<div id="fg"></div>
+					<div id="bg"></div>
+				</div>
 			</section>
 		</a>
 		<section id="projects">
