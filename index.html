@@ -1,99 +1,46 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Amos Jackson</title>
-		<meta charset="utf-8">
-		<meta id="viewport" name='viewport' content="width=device-width, initial-scale=1">
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25862855-2"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-
-		  gtag('config', 'UA-25862855-2');
-		</script>
-		<script>
-		    var scroll, top_size, total;
-
-		    function scale(val) {
-		    	if(scroll < top_size) {
-		    		return 0;
-		    	} else if(scroll - top_size > total){
-		    		return val;
-		    	}
-
-		    	return val * (scroll - top_size)/total;
-		    }
-
-		    window.onload = function() {
-		    	var fg = document.getElementById("fg");
-		    	var bg = document.getElementById("bg");
-		    	top_size = document.getElementById("flexcontainer").scrollHeight / 2;
-		    	total = top_size + document.getElementById("fg").scrollHeight / 2;
-
-		    	window.onscroll = function() {
-		    		scroll = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0);
-
-
-		    		var rot = "rotate("+ scale(-8) +"deg)";
-		    		var fg_trans = "translateZ(" + scale(150) + "px)";
-		    		var bg_trans = "translateZ(" + scale(-190) + "px)"
-		    		fg.style.transform = fg_trans + rot;
-		    		bg.style.transform = "translateZ(-800px) scale(1.8)" + bg_trans + rot;
-		    	}
-
-		    };
-		</script>
-		<link rel="stylesheet" type="text/css" href="resources/css/style.css">
-	</head>
-	<body>
-		<div id="front">
-			<nav>
-				<a href="#photos">Photos</a><a href="#projects">Web Projects</a><a href="cv.pdf" target="_blank">CV</a><a href="#about">About</a>
-			</nav>
-			<div id="flexcontainer">
-				<h1>Hi! I'm Amos.</h1>
-			</div>
-		</div>
-		<a href="http://photos.amosjackson.com" target="_blank">
-			<section id="photos">
-				<div id="goat">
-					<span>I take photos</span>
-					<div id="fg"></div>
-					<div id="bg"></div>
-				</div>
-			</section>
-		</a>
-		<section id="projects">
-			<h3>I also make things (mostly) for the web:</h3>
-			<div class="thing"><a target="_blank" href="https://pith.space"><div><span>Code/Design</span></div></a><img alt="Image of pith.space site" src="resources/pith.png"><p>Pith Redesign</p></div>
-			<div class="thing"><a target="_blank" href="resources/tictactoe.pdf"><div><span>Everything</span></div></a><img alt="Image showing section of TicTacToe UI" src="resources/tictactoe.png"><p>Ultimate TicTacToe + AI</p></div>
-			<div class="thing"><a target="_blank" href="https://vimeo.com/231385297"><div><span>Everything</span></div></a><img alt="A frame from final project film" src="resources/providence.png"><p>City & Cinema Final Project</p></div>
-			<div class="thing"><a target="_blank" href="http://jackandjacksons.com"><div><span>Design</span></div></a><img alt="Jack & Jacksons logo" src="resources/jandj.png"><p>Jack &amp; Jacksons</p></div>
-			<div class="thing"><a target="_blank" href="https://www.youtube.com/watch?v=x-ORdlMTgX8"><div><span>Everything</span></div></a><img alt="Sextet logo: a question mark" src="resources/sextet.png"><p>Sextet</p></div>
-			<div class="thing"><a target="_blank" href="http://films.amos.im"><div><span>Design</span></div></a><img alt="35mm film representing cinema" src="resources/films.png"><p>Films I've Seen</p></div>
-			<div class="thing"><a target="_blank" href="http://music.amosjackson.com"><div><span>Everything</span></div></a><img alt="A vinyl record" src="resources/record2.png"><p>What's Amos Listening to?</p></div>
-			<div class="thing"><a target="_blank" href="https://web.archive.org/web/20130809185101/http://remote.bergcloud.com/publications/38"><div><span>Code</span></div></a><img alt="The logo for This is My Jam: the word jam" src="resources/jamnew.png"><p>A Song a Day</p></div>
-			<div class="thing"><a target="_blank" href="https://web.archive.org/web/20130809184312/http://remote.bergcloud.com/publications/74"><div><span>Everything</span></div></a><img alt="A gramaphone" src="resources/gramnew.png"><p>Pop Charts</p></div>
-			<div class="thing"><a target="_blank" href="https://web.archive.org/web/20130809211438/http://remote.bergcloud.com/publications/91"><div><span>Everything</span></div></a><img alt="The moon" src="resources/moon2.png"><p>Werewolf Watcher</p></div>
-		</section>
-		<section id="about">
-			<h4>About me</h4>
-			<p>I'm <script type="text/javascript">dob = new Date(1997,09,30);var today = new Date();var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));document.write(age);</script> and I like design, photography, filmmaking and programming. In my spare time, I sometimes make websites about myself, because <a href="http://en.wikipedia.org/wiki/Quantified_Self">quantifying</a> my life brings me joy. When I'm not doing that, I'm probably watching a film or some TV show that I'm deeply invested in.</p>
-			<p>I'm currently studying at <a href="https://www.brown.edu">Brown</a>, where I'm majoring in Computer Science and Slavic Studies. Aside from those, I hope to indulge in a bunch of other things (like history) during my time at university. </p><p>My first programming language was <a href="http://www.php.net/">PHP</a>, but quickly dropped it for <a href="https://www.ruby-lang.org/en/">Ruby</a>, coupled with <a href="http://www.sinatrarb.com/">Sinatra</a> or <a href="http://rubyonrails.org/">Ruby on Rails</a>. Most recently, I've learned <a href="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)">C#</a>, <a href="https://www.oracle.com/java/index.html">Java</a> and <a href="https://www.python.org">Python</a>. You can see the <a href="http://old.amos.im">old</a>, <a href="http://older.amos.im">older</a> and <a href="http://oldest.amos.im">oldest</a> iterations of this website (I'd like to think that I've come a long way). </p>
-			<div id="cv">
-				<a href="cv.pdf">Read my CV!</a>
-			</div>
-		</section>
-		<section id="contact">
-			<div id="contact-grid">
-				<div class="contact_img"><a target="_blank" href="//github.com/amja"><div id="social_github"></div></a></div>
-				<div class="contact_img"><a target="_blank" href="//www.linkedin.com/in/amosjackson"><div id="social_linkedin"></div></a></div>
-				<div class="contact_img"><a target="_blank" href="mailto:me@amosjackson.com"><div id="social_email"></div></a></div>
-				<div class="contact_img"><a target="_blank" href="//twitter.com/amos_jackson"><div id="social_twitter"></div></a></div>
-				<div class="contact_img"><a target="_blank" href="//flickr.com/amosjackson"><div id="social_flickr"></div></a></div>
-			</div>
-		</section>
-		<section id="copy"><p>Lovingly designed and coded by Amos Jackson in 2018</p></section>
-	</body>
+<!doctype html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Amos Jackson's personal website">
+    <meta name="keywords" content="Amos Jackson, personal website, web design, programming, microsoft">
+    <meta name="author" content="Amos Jackson">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>Amos Jackson</title>
+</head>
+<body>
+    <div id="checkerboard">
+        ok so this is me…
+    </div>
+    <div id="main-wrapper">
+        <main>
+            <h1>Amos Jackson</h1>
+            <div class="wiggly-line"></div>
+            <p id="pronouns">(he/him)</p>
+            <p>I'm from London, I graduated from Brown this year and I am soon to be working at Microsoft. I am <script>document.write(Math.floor((new Date() - new Date(1997, 09, 30)) / (365.25 * 24 * 60 * 60 * 1000)))</script><noscript>22</noscript> years old!</p>
+            <p>My latest freelance project was developing <a href="https://amja.github.io/pith/">two</a> <a href="https://jonahreider.com">iterations</a> of a supper-club site.</p>
+            <p>My latest academic project was a <a href="http://wealth.amos.im">website</a> exploring the racialised effects of inherited wealth.</p>
+            <p>
+                Learn more about me:
+            </p>
+            <ul>
+                <li><a href="cv.pdf">Résumé</a></li>
+                <li><a href="mailto:me@amosjackson.com">Email me</a> (me@amosjackson.com)</li>
+                <li><a href="https://linkedin.com/in/amosjackson">LinkedIn</a></li>
+                <li><a href="https://github.com/amja">GitHub</a></li>
+                <li><a href="https://twitter.com/amos_jackson">Twitter</a></li>
+                <li><a href="https://www.youtube.com/watch?v=ChZLpCpAbEo">Very important video</a></li>
+            </ul>
+            <img src="images/amos.jpg" alt="Mirror selfie of Amos with branches partially obscuring his face">
+            <img src="images/happy.png" id="face-1" class="face" aria-hidden="true">
+            <img src="images/sad.png" id="face-2" class="face" aria-hidden="true">
+            <img src="images/confetti.png" id="face-3" class="face" aria-hidden="true">
+        </main>
+    </div>
+</body>
 </html>

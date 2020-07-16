@@ -1,405 +1,259 @@
-$font-stack: Open Sans, Helvetica, Arial, sans-serif;
+@import "compass/reset";
+@import "compass/css3";
 
-html, body {
-  font-family:$font-stack;
-  margin:0;
-  height:100%;
-  width:100%;
+@font-face {
+    font-family: Fondamento;
+    src: url("../fonts/Fondamento/Fondamento-Regular.ttf");
 }
 
-a img {
-  outline : none!important;
-  border: 0;
+@font-face {
+    font-family: Cormorant;
+    font-weight: bold;
+    src: url("../fonts/Cormorant/Cormorant-BoldItalic.ttf");
 }
 
-#front {
-  position:relative;
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center center;
-  background-color:black;
-  height:100%;
-  width:100%;
-  -webkit-box-shadow:0px 1px 10px -1px black;
-          box-shadow:0px 1px 10px -1px black;
+@font-face {
+    font-family: "Cormorant Upright";
+    src: url("../fonts/Cormorant_Upright/CormorantUpright-Regular.ttf");
 }
 
-#flexcontainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-     -ms-flex-pack: center;
-   justify-content: center;
-  -webkit-box-align: center;
-     -ms-flex-align: center;
-        align-items: center;
-  width:100%;
-  height:inherit;
+$cream: rgb(255, 250, 244);
+
+body, html {
+    height: 100%;
+    width: 100%;
 }
 
-nav {
-  position:absolute;
-  height:100px;
-  top:0;
-  width:100%;
-  text-align:right;
-  margin-top:15px;
-  margin-bottom:15px;
+body {
+    background-color: $cream;
+    color: rgb(39, 39, 39);
+    perspective: 1300px;
+    position: relative;
+}
 
-  a {
-    padding:10px;
-    color:white;
-    font-size:11pt;
+#checkerboard {
+    $check-size: 90px;
+    $check-colour: #B7D2F3;
 
-    &:nth-of-type(4){
-      padding-right:25px;
+    align-items: center;
+    animation: spin 1.5s 0.8s forwards;
+    background-color: $cream;
+    background-image: linear-gradient(45deg, $check-colour 25%, transparent 25%), linear-gradient(-45deg, $check-colour 25%, transparent 25%), linear-gradient(45deg, transparent 75%, $check-colour 75%), linear-gradient(-45deg, transparent 75%, $check-colour 75%);
+    background-size: $check-size $check-size;
+    background-position: 0 $check-size / 2, 0 0, $check-size / 2 0, $check-size / 2 * -1 $check-size / 2;
+    border: 2px solid $check-colour;
+    box-sizing: border-box;
+    color: red;
+    display: flex;
+    font-family: Fondamento, Garamond, serif;
+    font-size: 4rem;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: rotateX(0.00001deg) rotateZ(0.00001deg) translateZ(0.1px);
+    width: 100%;
+    z-index: 2;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateX(0.00001deg) rotateZ(0.00001deg) translateZ(0.1px);
     }
-  }
+
+    100% {
+        transform: rotateX(90deg) rotateZ(90deg);
+    }
 }
 
 h1 {
-  color:white;
-  text-align:center;
-  font-family:Playfair Display;
-  font-size:75pt;
-  font-weight:700;
-  font-style:italic;
-  margin:0;
-  text-shadow:0px 0px 50px black;
+    animation: shimmer 7s ease infinite;
+    color: rgb(159, 255, 175);
+    font-family: Cormorant;
+    font-size: 6rem;
+    @include background-clip(text);
+    background-image: -webkit-linear-gradient(45deg, rgb(159, 255, 175), rgb(69, 181, 255), rgb(255, 120, 248) 45%, rgb(255, 120, 248), rgb(255, 120, 248) 55%, rgb(69, 181, 255), rgb(159, 255, 175) 95% );
+    background-size: 200% 100%;
+    margin: 0 0 10px 0;
+    -webkit-text-fill-color: transparent;
 }
 
-a{
-  text-decoration:none;
+@keyframes shimmer {
+    from {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+    to {
+        background-position: 0 0;
+    }
 }
+.wiggly-line {
+    $wiggle-size: 7px;
+    $grad-start: 48%;
+    $grad-end: 52%;
+    $wiggle-colour: rgb(255, 120, 248);
 
-
-#photos {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-  width:100%;
-  height: 66vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient:vertical;
-  -webkit-box-direction:normal;
-     -ms-flex-direction:column;
-         flex-direction:column;
-  -webkit-box-pack: center;
-   justify-content: center;
-     -ms-flex-pack: center;
-  -webkit-box-align: center;
-     -ms-flex-align: center;
-        align-items: center;
-  background-size:auto 100%;
-  background-position: center center;
-  color:#FFDF31;
-
-  span {
-    margin:0;
-    font-weight:800;
-    font-size:70pt;
-    text-align:center;
-    letter-spacing:-3px;
-    text-decoration: none;
-    -webkit-transform: translateZ(110px);
-            transform: translateZ(110px);
-    z-index: 1;
-  }
-}
-
-#goat {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-   justify-content: center;
-     -ms-flex-pack: center;
-  -webkit-box-align: center;
-     -ms-flex-align: center;
-        align-items: center;
-}
-
-#bg {
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-    left: 0;
-    top: -1px;
+    background-image: linear-gradient(45deg, transparent, transparent $grad-start, $wiggle-colour $grad-start, $wiggle-colour $grad-end, transparent $grad-end), linear-gradient(-45deg, transparent, transparent $grad-start, $wiggle-colour $grad-start, $wiggle-colour $grad-end, transparent $grad-end);
+    background-size: $wiggle-size * 2 $wiggle-size * 2;
+    height: $wiggle-size;
+    margin-top: -20px;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    background: url("../goat_images/bg.jpg") center / 100% no-repeat;
-    -webkit-transform: translateZ(-800px) scale(1.8);
-            transform: translateZ(-800px) scale(1.8);
-    z-index: -2;
 }
 
-#fg {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: url("../goat_images/goat.png") center / 100% no-repeat;
-  z-index: 0;
-}
-
-h3 {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1 / 3;
-  font-weight:300;
-  font-size:30pt;
-}
-
-#projects {
-  display: -ms-grid;
-      display: grid;
-  grid-template-columns: 1fr 1fr;
-       -ms-grid-columns: 1fr 1fr;
-  width:100%;
-  max-width:1000px;
-  text-align:center;
-  margin: 0 auto;
-  margin-bottom: 40px;
-}
-
-.thing {
-  position:relative;
-  z-index:100;
-  display:inline-block;
-  margin:0 auto;
-  width:50%;
-
-  div {
-    position:relative;
-    width:200px;
-    height:200px;
-    background:black;
-    border-radius:50%;
-    margin:0 auto;
-    z-index:2;
-    margin-bottom:-200px;
-    opacity:0;
-    transition:0.5s opacity;
-    -webkit-transition:0.5s opacity;
-       -moz-transition:0.5s opacity;
-         -o-transition:0.5s opacity;
-
-    &:hover {
-      transition:0.3s opacity;
-      -webkit-transition:0.3s opacity;
-         -moz-transition:0.3s opacity;
-           -o-transition:0.3s opacity;
-      opacity:0.8;
-    }
-
-    span {
-      text-align:center;
-      line-height:200px;
-      position:absolute;
-      z-index:2;
-      width:200px;
-      left:0;
-      color:white;
-      font-size:12pt;
-    }
-  }
-
-  img {
-    width:200px;
-
-  }
-}
-
-#about {
-  padding:40px;
-  background:#4EC6F0;
-  text-align:center;
-  p {
-    &:nth-last-of-type(1) {
-      margin-bottom:0!important;
-    }
-
-    a {
-      text-decoration:underline;
-      color:white;
-    }
-
-    text-align: justify;
-    color:white;
-    max-width:700px;
-    font-weight:400;
-    margin:0 auto;
-    margin-bottom:20px;
-  }
-}
-
-h4 {
-  display:inline-block;
-  margin:0;
-  margin-bottom:20px;
-  font-weight:300;
-  font-size:30pt;
-  color:white;
-}
-
-#cv {
-  margin: 0 auto;
-  padding-top: 20px;
-  text-decoration: underline;
-
-  a {
-    color: white;
-  }
-}
-
-#contact-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  justify-items: center;
-  align-items: center;
-  height:150px;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-#contact {
-  background:#323332;
-}
-
-.contact_img div {
-  height:50px;
-  width:50px;
-}
-
-#social_twitter {
-  background: url('../sprites.png') no-repeat 0 -33px;
-  background-size: 105px 133px;
-  width: 50px;
-  height: 41px;
-}
-
-#social_flickr {
-  background: url('../sprites.png') no-repeat 0 -1px;
-  background-size: 105px 133px;
-  width: 51px;
-  height: 24px;
-}
-
-#social_linkedin {
-  background: url('../sprites.png') no-repeat 0 -83px;
-  background-size: 105px 133px;
-  width: 50px;
-  height: 50px;
-}
-
-#social_github {
-  background: url('../sprites.png') no-repeat -55px 0;
-  background-size: 105px 133px;
-  width: 50px;
-  height: 50px;
-}
-
-#social_email {
-  background: url('../sprites.png') no-repeat -54px -55px;
-  background-size: 105px 133px;
-  width: 50px;
-  height: 39px;
-}
-
-#copy{
-  padding:32px;
-
-  p {
-    font-size:10.5pt;
+#pronouns {
+    color: rgb(131, 131, 131);
+    font-size: 1.2rem;
+    margin: 0.5rem 0 1.5rem 0;
     text-align: center;
-    color:gray;
-  }
 }
 
-::-moz-selection, -moz-::-moz-selection {
-  background:black;
-  color:white;
+p {
+    font-family: "Cormorant Upright";
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    min-width: 100%;
+    line-height: 2rem;
+    text-align: justify;
+    width: 0;
 }
 
-::selection, -moz-::selection {
-  background:black;
-  color:white;
+a {
+    color: rgb(39, 39, 39);
 }
 
-/* Fonts*/
-@import url(https://fonts.googleapis.com/css?family=Playfair+Display:700);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,800,400);
-
-/*Media Queries*/
-@media screen and (min-device-width:1681px) {
-  #front {
-  background-image:url('../fire_big.jpg');
-  }
-  /* #photos{*/
-  /*   background-image:url('../goat_big.jpg');*/
-  /* }*/
+p + ul {
+    margin-top: -1rem;
 }
 
-@media screen and (max-device-width:1680px) {
-  #front {
-    background-image:url('../fire_med.jpg');
-  }
-  /* #photos{*/
-  /*   background-image:url('../goat_med.jpg');*/
-  /* }*/
+li {
+    font-family: "Cormorant Upright";
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+
+    &:before {
+        content: "–";
+        margin-right: 5px;
+    }
 }
 
-@media screen and (max-device-width:1000px) {
-  #front {
-    background-image:url('../fire_small.jpg');
-  }
-  /* #photos{*/
-  /*   background-image:url('../goat_small.jpg');*/
-  /*   background-size:auto 100%;*/
-  /*   background-position: center center;*/
-  /* }*/
+.strikethrough {
+    text-decoration: line-through;
 }
 
-/* Mobile */
-@media (max-device-width:500px) {
-  nav a {
-    font-size:10pt;
-  }
-  .contact_img div {
-    -webkit-transform: scale(0.8);
-            transform: scale(0.8);
-  }
+#main-wrapper {
+    align-items: flex-start;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    overflow-y: auto;
+    width: 100%;
+}
 
-  #photos span {
-    font-size: 32pt;
-  }
+main {
+    overflow: visible;
+    padding-bottom: 1.5rem;
+    position: relative;
+    top: 20%;
+    z-index: 0;
 
-  h1 {
-    font-size: 40pt;
-  }
+    img {
+        width: 0;
+        margin-top: 1.5rem;
+        min-width: 100%;
+    }
+}
 
-  h3 {
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 1;
-    grid-column: 1 / 2;
-    font-size: 22pt;
-    padding: 0 15px 0 15px;
-  }
+#face-1 {
+    left: -35%;
+    top: 0;
+    transform: rotate(10deg);
+}
 
-  #projects {
-    grid-template-columns: 1fr;
-         -ms-grid-columns: 1fr;
-  }
+#face-2 {
+    left: 110%;
+    top: 30%;
+}
+
+#face-3 {
+    left: -45%;
+    top: 55%;
+    width: 32%;
+}
+
+.face {
+    min-width: auto;
+    position: absolute;
+    transform: rotate(-10deg);
+    width: 25%;
+}
+
+@media (min-width: 501px) and (max-width: 780px) {
+    #face-1 {
+        left: 10%;
+        top: -10%;
+    }
+
+    #face-2 {
+        left: 70%;
+        top: 33%;
+    }
+
+    #face-3 {
+        top: auto;
+        bottom: -8%;
+        left: -9%;
+    }
+}
+
+@media only screen and (max-width : 500px) {
+    #checkerboard {
+        font-size: 3rem;
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: scaleY(1);
+        }
+    
+        100% {
+            transform: scaleY(0);
+        }
+    }
+    
+    h1 {
+        font-size: 4rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+    }
+
+    li {
+        font-size: 1.1rem;
+    }
+
+    .wiggly-line {
+        margin-top: -18px;
+    }
+
+    #face-1 {
+        left: 10%;
+        top: -10%;
+    }
+
+    #face-2 {
+        left: 70%;
+        top: 33%;
+    }
+
+    #face-3 {
+        top: auto;
+        bottom: -8%;
+        left: -9%;
+    }
 }
