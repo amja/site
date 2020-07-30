@@ -37,11 +37,10 @@ body {
 
     align-items: center;
     animation: spin 1.5s 0.8s forwards;
-    background-color: $cream;
-    background-image: linear-gradient(45deg, $check-colour 25%, transparent 25%), linear-gradient(-45deg, $check-colour 25%, transparent 25%), linear-gradient(45deg, transparent 75%, $check-colour 75%), linear-gradient(-45deg, transparent 75%, $check-colour 75%);
-    background-size: $check-size $check-size;
-    background-position: 0 $check-size / 2, 0 0, $check-size / 2 0, $check-size / 2 * -1 $check-size / 2;
-    border: 2px solid $check-colour;
+    background-color: $check-colour;
+    background-image: linear-gradient(45deg, $cream 25%, transparent 25%), linear-gradient(45deg, transparent 75%, $cream 75%), linear-gradient(-45deg, $cream 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, $cream 75%), linear-gradient(135deg, $check-colour, $cream);
+    background-size: $check-size $check-size, $check-size $check-size, $check-size $check-size, $check-size $check-size, 100% 100%;
+    background-position: $check-size / 2 $check-size / 2, 0 0, -1 * $check-size / 2 0, 0 $check-size / 2, 0 0;
     box-sizing: border-box;
     color: red;
     display: flex;
@@ -68,7 +67,7 @@ body {
 }
 
 h1 {
-    animation: shimmer 7s ease infinite;
+    animation: shimmer 5s ease infinite;
     color: rgb(159, 255, 175);
     font-family: Cormorant;
     font-size: 6rem;
@@ -95,7 +94,7 @@ h1 {
     $wiggle-size: 7px;
     $grad-start: 48%;
     $grad-end: 52%;
-    $wiggle-colour: rgb(255, 120, 248);
+    $wiggle-colour: rgb(69, 181, 255);
 
     background-image: linear-gradient(45deg, transparent, transparent $grad-start, $wiggle-colour $grad-start, $wiggle-colour $grad-end, transparent $grad-end), linear-gradient(-45deg, transparent, transparent $grad-start, $wiggle-colour $grad-start, $wiggle-colour $grad-end, transparent $grad-end);
     background-size: $wiggle-size * 2 $wiggle-size * 2;

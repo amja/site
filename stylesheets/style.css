@@ -95,11 +95,10 @@ body {
 #checkerboard {
   align-items: center;
   animation: spin 1.5s 0.8s forwards;
-  background-color: #fffaf4;
-  background-image: linear-gradient(45deg, #b7d2f3 25%, rgba(0, 0, 0, 0) 25%), linear-gradient(-45deg, #b7d2f3 25%, rgba(0, 0, 0, 0) 25%), linear-gradient(45deg, rgba(0, 0, 0, 0) 75%, #b7d2f3 75%), linear-gradient(-45deg, rgba(0, 0, 0, 0) 75%, #b7d2f3 75%);
-  background-size: 90px 90px;
-  background-position: 0 45px, 0 0, 45px 0, -45px 45px;
-  border: 2px solid #B7D2F3;
+  background-color: #B7D2F3;
+  background-image: linear-gradient(45deg, #fffaf4 25%, rgba(0, 0, 0, 0) 25%), linear-gradient(45deg, rgba(0, 0, 0, 0) 75%, #fffaf4 75%), linear-gradient(-45deg, #fffaf4 25%, rgba(0, 0, 0, 0) 25%), linear-gradient(-45deg, rgba(0, 0, 0, 0) 75%, #fffaf4 75%), linear-gradient(135deg, #b7d2f3, #fffaf4);
+  background-size: 90px 90px, 90px 90px, 90px 90px, 90px 90px, 100% 100%;
+  background-position: 45px 45px, 0 0, -45px 0, 0 45px, 0 0;
   box-sizing: border-box;
   color: red;
   display: flex;
@@ -123,9 +122,9 @@ body {
     transform: rotateX(90deg) rotateZ(90deg);
   }
 }
-/* line 70, ../sass/style.scss */
+/* line 69, ../sass/style.scss */
 h1 {
-  animation: shimmer 7s ease infinite;
+  animation: shimmer 5s ease infinite;
   color: #9fffaf;
   font-family: Cormorant;
   font-size: 6rem;
@@ -150,16 +149,16 @@ h1 {
     background-position: 0 0;
   }
 }
-/* line 94, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 .wiggly-line {
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 48%, #ff78f8 48%, #ff78f8 52%, rgba(0, 0, 0, 0) 52%), linear-gradient(-45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 48%, #ff78f8 48%, #ff78f8 52%, rgba(0, 0, 0, 0) 52%);
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 48%, #45b5ff 48%, #45b5ff 52%, rgba(0, 0, 0, 0) 52%), linear-gradient(-45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 48%, #45b5ff 48%, #45b5ff 52%, rgba(0, 0, 0, 0) 52%);
   background-size: 14px 14px;
   height: 7px;
   margin-top: -20px;
   width: 100%;
 }
 
-/* line 107, ../sass/style.scss */
+/* line 106, ../sass/style.scss */
 #pronouns {
   color: #838383;
   font-size: 1.2rem;
@@ -167,7 +166,7 @@ h1 {
   text-align: center;
 }
 
-/* line 114, ../sass/style.scss */
+/* line 113, ../sass/style.scss */
 p {
   font-family: "Cormorant Upright";
   font-size: 1.5rem;
@@ -178,34 +177,34 @@ p {
   width: 0;
 }
 
-/* line 124, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 a {
   color: #272727;
 }
 
-/* line 128, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 p + ul {
   margin-top: -1rem;
 }
 
-/* line 132, ../sass/style.scss */
+/* line 131, ../sass/style.scss */
 li {
   font-family: "Cormorant Upright";
   font-size: 1.3rem;
   line-height: 1.8rem;
 }
-/* line 137, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 li:before {
   content: "–";
   margin-right: 5px;
 }
 
-/* line 143, ../sass/style.scss */
+/* line 142, ../sass/style.scss */
 .strikethrough {
   text-decoration: line-through;
 }
 
-/* line 147, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 #main-wrapper {
   align-items: flex-start;
   display: flex;
@@ -215,7 +214,7 @@ li:before {
   width: 100%;
 }
 
-/* line 156, ../sass/style.scss */
+/* line 155, ../sass/style.scss */
 main {
   overflow: visible;
   padding-bottom: 1.5rem;
@@ -223,34 +222,34 @@ main {
   top: 20%;
   z-index: 0;
 }
-/* line 163, ../sass/style.scss */
+/* line 162, ../sass/style.scss */
 main img {
   width: 0;
   margin-top: 1.5rem;
   min-width: 100%;
 }
 
-/* line 170, ../sass/style.scss */
+/* line 169, ../sass/style.scss */
 #face-1 {
   left: -35%;
   top: 0;
   transform: rotate(10deg);
 }
 
-/* line 176, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 #face-2 {
   left: 110%;
   top: 30%;
 }
 
-/* line 181, ../sass/style.scss */
+/* line 180, ../sass/style.scss */
 #face-3 {
   left: -45%;
   top: 55%;
   width: 32%;
 }
 
-/* line 187, ../sass/style.scss */
+/* line 186, ../sass/style.scss */
 .face {
   min-width: auto;
   position: absolute;
@@ -259,19 +258,19 @@ main img {
 }
 
 @media (min-width: 501px) and (max-width: 780px) {
-  /* line 195, ../sass/style.scss */
+  /* line 194, ../sass/style.scss */
   #face-1 {
     left: 10%;
     top: -10%;
   }
 
-  /* line 200, ../sass/style.scss */
+  /* line 199, ../sass/style.scss */
   #face-2 {
     left: 70%;
     top: 33%;
   }
 
-  /* line 205, ../sass/style.scss */
+  /* line 204, ../sass/style.scss */
   #face-3 {
     top: auto;
     bottom: -8%;
@@ -279,7 +278,7 @@ main img {
   }
 }
 @media only screen and (max-width: 500px) {
-  /* line 213, ../sass/style.scss */
+  /* line 212, ../sass/style.scss */
   #checkerboard {
     font-size: 3rem;
   }
@@ -292,40 +291,40 @@ main img {
       transform: scaleY(0);
     }
   }
-  /* line 227, ../sass/style.scss */
+  /* line 226, ../sass/style.scss */
   h1 {
     font-size: 4rem;
   }
 
-  /* line 231, ../sass/style.scss */
+  /* line 230, ../sass/style.scss */
   p {
     font-size: 1.2rem;
     line-height: 1.8rem;
   }
 
-  /* line 236, ../sass/style.scss */
+  /* line 235, ../sass/style.scss */
   li {
     font-size: 1.1rem;
   }
 
-  /* line 240, ../sass/style.scss */
+  /* line 239, ../sass/style.scss */
   .wiggly-line {
     margin-top: -18px;
   }
 
-  /* line 244, ../sass/style.scss */
+  /* line 243, ../sass/style.scss */
   #face-1 {
     left: 10%;
     top: -10%;
   }
 
-  /* line 249, ../sass/style.scss */
+  /* line 248, ../sass/style.scss */
   #face-2 {
     left: 70%;
     top: 33%;
   }
 
-  /* line 254, ../sass/style.scss */
+  /* line 253, ../sass/style.scss */
   #face-3 {
     top: auto;
     bottom: -8%;
