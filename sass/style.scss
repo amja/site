@@ -120,7 +120,9 @@ h1 {
     background-size: $wiggle-size * 2 $wiggle-size * 2;
     height: $wiggle-size;
     margin-top: -20px;
+    position: relative;
     width: 100%;
+    z-index: -1;
 }
 
 #pronouns {
