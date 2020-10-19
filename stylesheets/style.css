@@ -229,6 +229,13 @@ main img {
   top: 0;
   transform: rotate(10deg);
 }
+#face-1 video {
+  height: 100%;
+  width: 100%;
+}
+#face-1 video:last-child {
+  display: none;
+}
 
 #face-2 {
   left: 110%;
@@ -311,5 +318,29 @@ main img {
     top: auto;
     bottom: -8%;
     left: -9%;
+  }
+}
+@media (prefers-reduced-motion) {
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  #checkerboard {
+    animation-name: fade-out;
+  }
+
+  h1 {
+    animation: none;
+  }
+
+  #face-1 video:first-child {
+    display: none;
+  }
+  #face-1 video:last-child {
+    display: initial;
   }
 }

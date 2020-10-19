@@ -192,6 +192,15 @@ main {
     left: -35%;
     top: 0;
     transform: rotate(10deg);
+
+    video {
+        height: 100%;
+        width: 100%;
+
+        &:last-child {
+            display: none;
+        }
+    }
 }
 
 #face-2 {
@@ -278,5 +287,37 @@ main {
         top: auto;
         bottom: -8%;
         left: -9%;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    @keyframes fade-out {
+        from {
+            opacity: 1;
+        }
+    
+        to {
+            opacity: 0;
+        }
+    }
+
+    #checkerboard {
+        animation-name: fade-out;
+    }
+
+    h1 {
+        animation: none;
+    }
+
+    #face-1 {
+        video {
+            &:first-child {
+                display: none;
+            }
+
+            &:last-child {
+                display: initial;
+            }
+        }
     }
 }
