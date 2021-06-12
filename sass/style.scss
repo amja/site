@@ -1,6 +1,3 @@
-@import "compass/reset";
-@import "compass/css3";
-
 @font-face {
     font-family: Fondamento;
     src: url("../fonts/Fondamento/Fondamento-Regular.ttf");
@@ -17,16 +14,37 @@
     src: url("../fonts/Cormorant_Upright/CormorantUpright-Regular.ttf");
 }
 
-$cream: rgb(255, 250, 244);
+:root {
+    --primary-bg: #fffaf4;
+    --checker-colour: #B7D2F3;
+    --body-colour: #272727;
+    --subtitle-colour: #838383;
+    --intro-text-colour: red;
+    --wiggle-colour: #45b5ff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-bg: #2c3638;
+        --checker-colour: #4970a0;
+        --body-colour: #f0f0f0;
+        --subtitle-colour: #c2c1c1;
+        --intro-text-colour: #ff5858;
+        --wiggle-colour: #37aefd;
+    }
+}
 
 body, html {
     height: 100%;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
     width: 100%;
 }
 
 body {
-    background-color: $cream;
-    color: rgb(39, 39, 39);
+    background-color: var(--primary-bg);
+    color: var(--body-colour);
     overflow: hidden;
     position: relative;
 }
@@ -54,23 +72,21 @@ body {
 
 #checkerboard {
     $check-size: 90px;
-    $check-colour: #B7D2F3;
 
     align-items: center;
     animation: spin 1.5s 0.8s forwards;
-    background-color: $check-colour;
-    background-image: linear-gradient(45deg, $cream 25%, transparent 25%), linear-gradient(45deg, transparent 75%, $cream 75%), linear-gradient(-45deg, $cream 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, $cream 75%), linear-gradient(135deg, $check-colour, $cream);
+    background-color: var(--checker-colour);
+    background-image: linear-gradient(45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(-45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(135deg, var(--checker-colour), var(--primary-bg));
     background-size: $check-size $check-size, $check-size $check-size, $check-size $check-size, $check-size $check-size, 100% 100%;
     background-position: $check-size / 2 $check-size / 2, 0 0, -1 * $check-size / 2 0, 0 $check-size / 2, 0 0;
     box-sizing: border-box;
-    color: red;
+    color: var(--intro-text-colour);
     display: flex;
     font-family: Fondamento, Garamond, serif;
     font-size: 4rem;
     height: 100%;
     justify-content: center;
     left: 0;
-    // position: absolute;
     top: 0;
     transform: rotateX(0.00001deg) rotateZ(0.00001deg) translateZ(0.1px);
     width: 100%;
@@ -91,7 +107,10 @@ h1 {
     color: rgb(159, 255, 175);
     font-family: Cormorant;
     font-size: 6rem;
-    @include background-clip(text);
+    -moz-background-clip: text;
+    -o-background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
     background-image: -webkit-linear-gradient(45deg, rgb(159, 255, 175), rgb(69, 181, 255), rgb(255, 120, 248) 45%, rgb(255, 120, 248), rgb(255, 120, 248) 55%, rgb(69, 181, 255), rgb(159, 255, 175) 95% );
     background-size: 200% 100%;
     margin: 0 0 10px 0;
@@ -110,13 +129,13 @@ h1 {
         background-position: 0 0;
     }
 }
+
 .wiggly-line {
     $wiggle-size: 7px;
     $grad-start: 48%;
     $grad-end: 52%;
-    $wiggle-colour: rgb(69, 181, 255);
 
-    background-image: linear-gradient(45deg, transparent, transparent $grad-start, $wiggle-colour $grad-start, $wiggle-colour $grad-end, transparent $grad-end), linear-gradient(-45deg, transparent, transparent $grad-start, $wiggle-colour $grad-start, $wiggle-colour $grad-end, transparent $grad-end);
+    background-image: linear-gradient(45deg, transparent, transparent $grad-start, var(--wiggle-colour) $grad-start, var(--wiggle-colour) $grad-end, transparent $grad-end), linear-gradient(-45deg, transparent, transparent $grad-start, var(--wiggle-colour) $grad-start, var(--wiggle-colour) $grad-end, transparent $grad-end);
     background-size: $wiggle-size * 2 $wiggle-size * 2;
     height: $wiggle-size;
     margin-top: -20px;
@@ -126,7 +145,7 @@ h1 {
 }
 
 #pronouns {
-    color: rgb(131, 131, 131);
+    color: var(--subtitle-colour);
     font-size: 1.2rem;
     margin: 0.5rem 0 1.5rem 0;
     text-align: center;
@@ -143,7 +162,7 @@ p {
 }
 
 a {
-    color: rgb(39, 39, 39);
+    color: var(--body-colour);
 }
 
 p + ul {
@@ -182,6 +201,7 @@ main {
     z-index: 0;
 
     img {
+        border-radius: 15px;
         width: 0;
         margin-top: 1.5rem;
         min-width: 100%;
@@ -189,9 +209,10 @@ main {
 }
 
 #face-1 {
-    left: -35%;
+    left: -50%;
     top: 0;
     transform: rotate(10deg);
+    width: 53%;
 
     video {
         height: 100%;
@@ -215,7 +236,7 @@ main {
 }
 
 .face {
-    animation: 0.9s 1.6s fade-in forwards;
+    animation: 0.9s 2s fade-in forwards;
     min-width: auto;
     opacity: 0;
     position: absolute;
@@ -235,7 +256,7 @@ main {
 
 @media (min-width: 501px) and (max-width: 780px) {
     #face-1 {
-        left: 10%;
+        left: 0;
         top: -10%;
     }
 
@@ -274,7 +295,7 @@ main {
     }
 
     #face-1 {
-        left: 10%;
+        left: 0;
         top: -10%;
     }
 
