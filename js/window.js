@@ -16,6 +16,7 @@ const POSSIBLE_TEXTS = [
     `Flipping some transistors just to feel a little warmth...`,
     `We take it for granted today, but a single computer screen has more pixels than a peasant in the 1400s would get in their whole lifetime <a href="https://twitter.com/matthewpcrowley/status/621078253827002368">*</a>`
 ];
+var usedTexts = [];
 var windowElement;
 
 window.onload = () => {
@@ -58,8 +59,14 @@ const onFullScreenButtonTapped = () => {
         announcementElement.style.display = "none";
         announcementElement.innerHTML = "";
     }, 500);
-
-    document.getElementsByClassName(TEXT_CONTAINER_CLASS)[0].innerHTML = POSSIBLE_TEXTS[Math.floor(Math.random() * POSSIBLE_TEXTS.length)];
+    
+    if (usedTexts.length == POSSIBLE_TEXTS.length) {
+        usedTexts = []
+    }
+    const unusedTexts = POSSIBLE_TEXTS.filter(item => { return !usedTexts.includes(item) });
+    const nextText = unusedTexts[Math.floor(Math.random() * unusedTexts.length)];
+    usedTexts.push(nextText);
+    document.getElementsByClassName(TEXT_CONTAINER_CLASS)[0].innerHTML = nextText;
     makeWindowAbsolute();
 
     const originalSize = windowElement.getBoundingClientRect();
