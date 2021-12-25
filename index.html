@@ -14,14 +14,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
     <link rel="shortcut icon" href="images/favicon.png">
     <title>Amos Jackson</title>
-    <script>
-        window.onload = () => {
-            const ageParagraph = document.getElementById("replace-age");
-            const age = Math.floor((new Date() - new Date("1997-09-30")) / (365.25 * 24 * 60 * 60 * 1000));
-            ageParagraph.innerHTML = ageParagraph.innerHTML.replace(/\d{2,3} years old/, `${age} years old`);
-        };
-    </script>
+    <script src="js/window.js"></script>
 </head>
+
 <body>
     <div id="checkerboard-3d-wrapper">
         <div id="checkerboard">
@@ -33,9 +28,12 @@
             <h1>Amos Jackson</h1>
             <div class="wiggly-line"></div>
             <p id="pronouns">(he/him)</p>
-            <p id="replace-age">I'm from London, I graduated from Brown University last year and currently work at Microsoft. I am 23 years old!</p>
-            <p>My latest freelance project was developing <a href="https://amja.github.io/pith/">two</a> <a href="https://jonahreider.com">iterations</a> of a supper-club site.</p>
-            <p>My latest academic project was a <a href="http://wealth.amos.im">website</a> exploring the racialised effects of inherited wealth.</p>
+            <p id="replace-age">I'm from London, I graduated from Brown University last year and currently work at
+                Microsoft. I am 24 years old!</p>
+            <p>My latest freelance project was developing <a href="https://amja.github.io/pith/">two</a> <a
+                    href="https://jonahreider.com">iterations</a> of a supper-club site.</p>
+            <p>My latest academic project was a <a href="http://wealth.amos.im">website</a> exploring the racialised
+                effects of inherited wealth.</p>
             <p>
                 Learn more about me:
             </p>
@@ -43,12 +41,35 @@
                 <li><a href="resume.pdf">Résumé</a></li>
                 <li><a href="mailto:me@amosjackson.com">Email me</a> (me@amosjackson.com)</li>
                 <li><a href="https://linkedin.com/in/amosjackson">LinkedIn</a></li>
-                <li><a href="https://github.com/amja">GitHub</a></li>
                 <li><a href="https://twitter.com/amos_jackson">Twitter</a></li>
                 <li><a href="https://www.youtube.com/watch?v=QUqCWkPlLLc&t=102s">Very important video</a></li>
             </ul>
-            <img src="images/amos.jpg" alt="Amos, a young, white man, is wearing an all-black outfit (including beret) and drinking tea in front of a trellis of leafy, climbing plants">
-            <div class="face" id="face-1" aria-hidden="true">
+            <div class="window-placeholder">
+            </div>
+            <div aria-label="imitation of a macOS window" class="window">
+                <div aria-live="polite" aria-relevant="all" class="todo">// TODO: Add minimise effect</div>
+                <div class="chrome">
+                    <div class="chrome-left-contents">
+                        <div class="buttons">
+                            <button aria-label="close" onclick="onCloseButtonTapped()"></button>
+                            <button aria-label="minimise" onclick="onMinimiseButtonTapped()"></button>
+                            <button aria-label="full screen" onclick="onFullScreenButtonTapped()"></button>
+                        </div>
+                        <div class="filename">amos.jpg</div>
+                    </div>
+                    <div class="chrome-right-contents">
+                        <div></div>
+                        <div></div>
+                        <div class="chrome-line"></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <img src="images/amos.jpg"
+                    alt="Amos, a young, white man, is wearing an all-black outfit (including beret) and drinking tea in front of a trellis of leafy, climbing plants">
+            </div>
+            <div class="face" id="face-1" aria-label="Amos Memoji repeatedly smiling" role="img">
                 <video autoplay loop muted playsinline>
                     <source src="images/smile.mov" type='video/mp4; codecs="hvc1"'>
                     <source src="images/smile.webm" type="video/webm">
@@ -62,5 +83,12 @@
             <img alt="Amos Memoji blowing party horn with confetti" src="images/confetti.png" id="face-3" class="face">
         </main>
     </div>
+    <div role="dialog" aria-modal="true" aria-label="Just a thought" class="loading-view">
+        <div aria-live="polite" aria-relevant="additions" class="announcement"></div>
+        <img id="spinner" src="images/spinner.svg" aria-label="macOS spinning beach ball">
+        <div class="text-container"></div>
+        <button href="#" onclick="goBack()">← Back</button>
+    </div>
 </body>
+
 </html>

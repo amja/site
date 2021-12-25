@@ -1,17 +1,20 @@
 @font-face {
     font-family: Fondamento;
-    src: url("../fonts/Fondamento/Fondamento-Regular.ttf");
+    src: url("../fonts/Fondamento/Fondamento-Regular.woff2") format("woff2"),
+    url("../fonts/Fondamento/Fondamento-Regular.ttf") format("truetype");
 }
 
 @font-face {
     font-family: Cormorant;
     font-weight: bold;
-    src: url("../fonts/Cormorant/Cormorant-BoldItalic.ttf");
+    src: url("../fonts/Cormorant/Cormorant-BoldItalic.woff2") format("woff2"),
+    url("../fonts/Cormorant/Cormorant-BoldItalic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Cormorant Upright";
-    src: url("../fonts/Cormorant_Upright/CormorantUpright-Regular.ttf");
+    src: url("../fonts/Cormorant_Upright/CormorantUpright-Regular.woff2") format("woff2"),
+    url("../fonts/Cormorant_Upright/CormorantUpright-Regular.ttf") format("truetype");
 }
 
 :root {
@@ -21,6 +24,11 @@
     --subtitle-colour: #838383;
     --intro-text-colour: red;
     --wiggle-colour: #45b5ff;
+    --chrome-background: #D2D2D2;
+    --chrome-button-color: #ADADAD;
+    --chrome-text-color: #3F3F3F;
+    --chrome-border-top-color: #ECECEC;
+    --loading-view-transition-time: 14s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +39,10 @@
         --subtitle-colour: #c2c1c1;
         --intro-text-colour: #ff5858;
         --wiggle-colour: #37aefd;
+        --chrome-background: #2C2C2B;
+        --chrome-button-color: #4C4C4B;
+        --chrome-text-color: #E9E9E9;
+        --chrome-border-top-color: #676767;
     }
 }
 
@@ -48,6 +60,84 @@ body {
     position: relative;
 }
 
+.loading-view {
+    align-items: center;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    font-family: "Cormorant Upright";
+    font-size: 1.5rem;
+    gap: 20px;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    line-height: 2rem;
+    opacity: 0.001;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    transition: all 1s ease;
+    visibility: hidden;
+    width: 100%;
+    z-index: 0;
+
+    &.display {
+        opacity: 1;
+        transition: opacity calc(var(--loading-view-transition-time) - 6s) ease calc(var(--loading-view-transition-time) - 8s);
+        visibility: visible;
+        z-index: 4;
+
+        * {
+            opacity: 1;
+        }
+
+        img {
+            transition: opacity 1s ease calc(var(--loading-view-transition-time) - 4s);
+        }
+
+        :nth-child(3) {
+            transition: opacity 1s ease calc(var(--loading-view-transition-time) - 2s);
+        }
+
+        > button {
+            transition: opacity 1s ease calc(var(--loading-view-transition-time) + 1s);
+        }
+    }
+    
+    *:not(img) {
+        color: #f0f0f0;
+        max-width: 50ch;
+        opacity: 0;
+    }
+
+    img {
+        animation: rotate 0.6s linear infinite;
+        opacity: 0;
+        transform: rotate(0deg);
+        width: 25px;
+    }
+
+    > button {
+        background: none;
+        border: none;
+        font-family: "Cormorant Upright";
+        font-size: 1.2rem;
+        outline: inherit;
+        padding: 0;
+        border-bottom: 1px solid #f0f0f0;
+
+        &:hover {
+            border-bottom-style: dotted;
+        }
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
 #checkerboard-3d-wrapper {
     animation: delayed-hide 0s 2.3s forwards;
     height: 100%;
@@ -56,7 +146,7 @@ body {
     position: absolute;
     transform-style: preserve-3d;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
 }
 
 @keyframes delayed-hide {
@@ -68,7 +158,7 @@ body {
 
 #checkerboard {
     $check-size: 90px;
-
+display: none;
     align-items: center;
     animation: spin 1.5s 0.8s forwards;
     background-color: var(--checker-colour);
@@ -201,11 +291,160 @@ main {
     top: 20%;
     z-index: 0;
 
-    img {
-        border-radius: 15px;
-        width: 0;
+    .window-placeholder {
+        align-items: center;
+        display: none;
+        justify-content: center;
+        margin-top: 1.5rem;
+        position: relative;
+
+        p {
+            text-align: center;
+        }
+    }
+
+    .window {
+        border-radius: 12px;
+        box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);  
+        display: flex;
+        flex-direction: column;
         margin-top: 1.5rem;
         min-width: 100%;
+        position: relative;
+        transform: rotate3d(0, 1, 0, 0deg);
+        transition: transform 1s ease;
+        width: 0;
+        z-index: 0;
+
+        &.rotated {
+            transform: rotate3d(0, 1, 0, 180deg);
+        }
+
+        &.absolute {
+            position: fixed;
+            margin-top: 0;
+            min-width: auto;
+            z-index: 2; 
+        }
+
+        &.enlarged {
+            transition-property: top, left, width;
+            transition-duration:  32s;
+            transition-timing-function: ease-in-out;
+            
+            img {
+                image-rendering: pixelated;
+            }
+        }
+
+        img {
+            border-radius: 0 0 12px 12px;
+            width: 100%;
+        }
+
+        .todo {
+            background: black;
+            color: #f0f0f0;
+            font-family: monospace;
+            font-size: 2rem;
+            opacity: 0;
+            position: absolute;
+            top: 100px;
+            visibility: hidden;
+        }
+
+        .todo.flash {
+            animation: flash 2s 0.8s ease forwards;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes flash {
+            to {
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+    }
+
+    .chrome {
+        align-items: center;
+        background-color: var(--chrome-background);
+        border-top: 0.25px solid var(--chrome-border-top-color);
+        border-bottom: 0.5px solid rgba(0,0,0,0.5);
+        border-radius: 12px 12px 0 0;
+        box-sizing: border-box;
+        color: var(--chrome-text-color);
+        cursor: grab;
+        display: flex;
+        font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        height: 52px;
+        justify-content: space-between;
+        line-height: 8px;
+        padding: 0 23px;
+
+        .buttons {
+            display: flex;
+            gap: 7.5px;
+
+            button {
+                background: none;
+	            border: none;
+                border-radius: 6.5px;
+                height: 11.5px;
+                outline: inherit;
+                padding: 0;
+                width: 11.5px;
+
+                &:first-child {
+                    background-color: #FF5E57;
+                    border: 0.5px solid #E04037;
+                }
+
+                &:nth-child(2) {
+                    background-color: #FEBC2E;
+                    border: 0.5px solid #DE9C1B;
+                }
+
+                &:nth-child(3) {
+                    background-color: #28C73E;
+                    border: 0.5px solid #19A823;
+                }
+            }
+        }
+
+        .filename {
+            margin-left: 22.5px;
+            margin-top: 0.08rem;
+        }
+        
+        .chrome-left-contents, .chrome-right-contents {
+            display: flex;
+        }
+
+        .chrome-right-contents {
+            gap: 10px;
+
+            div {
+                background-color: var(--chrome-button-color);
+            }
+
+            .chrome-line {
+                height: 20px;
+                width: 1px;
+            }
+
+            div:not(.chrome-line) {
+                $dot-size: 19px;
+                border-radius: $dot-size;
+                box-sizing: border-box;
+                height: $dot-size;
+                justify-self: right;
+                width: $dot-size;
+            }
+        }
     }
 }
 
@@ -243,6 +482,7 @@ main {
     position: absolute;
     transform: rotate(-10deg);
     width: 25%;
+    z-index: 1;
 }
 
 @keyframes fade-in {
@@ -253,6 +493,11 @@ main {
     to {
         opacity: 1;
     }
+}
+
+.announcement {
+    opacity: 0;
+    position: absolute;
 }
 
 @media (min-width: 501px) and (max-width: 780px) {
@@ -309,6 +554,14 @@ main {
         top: auto;
         bottom: -8%;
         left: -9%;
+    }
+
+    .chrome-right-contents :first-child {
+        display: none;
+    }
+
+    main .window .todo {
+        font-size: 1.5rem;
     }
 }
 
