@@ -108,12 +108,14 @@ const onChromeDragStarted = e => {
     }
 
     e.preventDefault();
-
+    e.target.style.cursor = "grabbing";
+    
     var mouseX = e.clientX;
     var mouseY = e.clientY;
     makeWindowAbsolute();
 
     document.onmouseup = () => {
+        e.target.style.cursor = "grab";
         document.onmouseup = null;
         document.onmousemove = null;
     }
