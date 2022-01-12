@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+     <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#blog_form').change(function(){
+          data = $('#blog_form').val();
+
+           $('#form').html("<img src='spinner.png' id=spinner>");
+
+        $.ajax({
+          type: "GET",
+          url: "/done",
+          data: "blog=" + data,
+          success: function(data) {
+            $('#form').html(data);
+          }
+        });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="stuff">
+    <form name="blog" action ="" id="form">
+      <select id="blog_form">
+        <option value="nuthin">Choose a blog</option>
+        <% @urls.each do |k,v| %>
+        <%= "<option value='#{v}'>#{k}</option>" %>
+        <% end %>
+      </select>
+      <p>Choose which blog you'd like to post to (you'll only have to do this once)</p>
+    </form>
+  </div>
+  </body>
+</html>

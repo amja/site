@@ -1,0 +1,136 @@
+.item img{
+  width:100%;
+  opacity:1;
+  border-radius:3px;
+  transition: 0.3s opacity ease-out;
+  position:relative;
+  z-index:1;
+}
+
+.item{
+  width:394px;
+  margin:3px;
+  background:black;
+  border-radius:3px;
+}
+
+.item.track{
+max-width:300px;
+}
+
+.item img:hover{
+  opacity:0.2;
+}
+
+body{
+  margin:0;
+}
+
+#music{
+  width:100%;
+  max-width:1200px;
+  opacity:0;
+  margin:0 auto;
+}
+
+#spinner{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  border:2px solid black;
+  position:absolute;
+  left:50%;
+  margin-left:-50px;
+  top:500px;
+  
+}
+
+#spinner{
+
+  -webkit-animation: loading 2s ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction:alternate;
+  animation: loading 2s ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction:alternate;
+  -moz-animation: loading 2s ease-in-out;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction:alternate;
+}
+
+@-webkit-keyframes loading {
+    0% {-webkit-transform: scale(0.5, 0.5); opacity: 0.5; border: 2px solid black;}
+    100% {-webkit-transform: scale(0.6, 0.6); opacity: 0.9; border: 2px solid #ff0000;}
+}
+
+@keyframes loading {
+    0% {transform: scale(0.5, 0.5); opacity: 0.5; border: 2px solid black;}
+    100% {transform: scale(0.6, 0.6); opacity: 0.9; border: 2px solid #ff0000;}
+}
+
+header{
+  margin:0 auto;
+}
+
+h1,h3, h2{
+  margin:0;
+  font-weight:normal;
+  font-family:sofia;
+  text-align:center;
+}
+
+h1{
+  font-size:50px;
+}
+
+h2{
+  margin-top:-20px;
+  margin-bottom:24px;
+  font-size:20px;
+}
+
+h3{
+  font-size:24px;
+}
+
+h2 a,h3 a, h2, h3{
+
+  font-family:pt-sans-narrow;
+  text-decoration: none;
+  color:gray;
+  margin:5px;
+}
+
+.selected{
+  color:black;
+}
+
+.item p{
+  position:absolute;
+  color:white;
+  font-family:pt-sans-narrow;
+  /*top:50%;*/
+  width:100%;
+  text-align: center;
+  margin:0;
+}
+
+#wrapper{
+  margin:0 auto;
+  max-width:1500px;
+}
+
+::selection {
+  background: rgba(150,0,0,0.8);
+  color:white;
+  }
+::-moz-selection {
+  background: #aa0000; /* Firefox */
+}
+@media all and (max-width:1218px){
+  .item{
+    margin:3px;
+    padding:0;
+    width:calc((100% / 3) - 9px);
+  }
+}

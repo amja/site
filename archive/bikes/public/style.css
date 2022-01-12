@@ -1,0 +1,35 @@
+body {
+  margin:0;
+  padding:0;
+  padding-top:10px;
+  width:384px;
+}
+
+#map-canvas {
+  height:384px;
+  width:384px;
+}
+
+span {
+  font-weight:bold;
+}
+
+h1 {
+  font-size:30px;
+  text-align:center;
+  font-family:'Quattrocento Roman'
+}
+
+p {
+  font-family:arial;
+  font-size:20px;
+  text-align:center;
+}
+
+
+hr {
+  border-color:black;
+  height:2px;
+  width:100%;
+  background:black;
+}

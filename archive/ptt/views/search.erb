@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <title>ptt</title>
+    <script type="text/javascript">
+      $(function() {
+        $(document).ready(function(){$("input#search").focus();});
+        $("#search_form").submit(function() {
+            var search = $("input#search").val();
+            if (search == "") {
+              $("input#search").focus();
+              return false;
+            }
+        $('#search_form').html("<img src='spinner.png' id=spinner>");
+        var dataString = 'search=' + search + '&next=0';
+
+        $.ajax({
+          type: "GET",
+          url: "/search",
+          data: dataString,
+          success: function(films) {
+            $('#search_form').html("<div id='films'></div>")
+            $('#films').html(films)
+            .append("<p>Choose a film</p>");
+          }
+        });
+        return false;
+        });
+        $(document).on('click', 'a div img', function() {
+          $('#films').html("<img src='spinner.png' id=spinner>");
+          var dataString = 'id=' + event.target.id + '&name=' + event.target.name;
+          $.ajax({
+            type: "GET",
+            url: "/posters",
+            data: dataString,
+            success: function(films) {
+              $('#films').html(films).append("<p>Choose a poster</p>") ;
+            }
+          });
+
+          return false;
+        });
+        $(document).on('click', 'img.choose', function() {
+          var url = event.target.getAttribute("src");
+          $('#stuff').html("<form name='formfortags' action='#' id='tags_form'><input type='text' name='tags' placeholder='a tag, another tag, a third' id='tags'><input type='hidden' name='url' value='"+url+"'></form>").append("<p>Choose tags</p>");
+            $('input#tags').focus();
+            $("#tags_form").submit(function(event){
+              event.preventDefault();
+              uri = $('input[name="url"]').val();
+              if($('input[name="tags"]').val() != ""){
+                params = "tags=" + $('input[name="tags"]').val() + "&url=" + encodeURIComponent(uri);
+              }else{
+                params = "url=" + encodeURIComponent(uri);
+              };
+              $.ajax({
+                type: "GET",
+                url: "/tags",
+                data: params + "&dude=bro",
+                success: function() {
+                  $('#stuff').html('<div class="rating"><span id="5">☆</span><span id="4">☆</span><span id="3">☆</span><span id="2">☆</span><span id="1">☆</span></div>');
+                }
+
+            });
+            });
+            return false;
+        });
+        $(document).on('click touchend', 'span',function() {
+          window.location.href = "/stars?stars=" + event.target.id
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>ptt</h1>
+    <div id="stuff">
+      <form name="search" action ="" id="search_form" method="get">
+        <input type="text" name="search" id="search" placeholder="Search for films">
+      </form>
+    </div>
+  </body>
+</html>

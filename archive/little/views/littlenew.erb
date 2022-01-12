@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="http://five.amosjackson.com/style.css">
+</head>
+<body>
+	<img src="http://five.amosjackson.com/header.jpg" id="header">
+	<%= "<img src='http://amos.im/resize.php?i=#{@final['entry'][0]['image'][2]['content'].gsub('170x170','600x600')}&w=600' class='dither'>" %>
+	<div id="songs">
+		<% @i = 0 #prepare variable for loop%>
+		<%# Loop 5 times, displaying a song each time. %>
+		<% 5.times do %>
+		<div class="song">
+		<h1><%= @i+1 %>. </h1><h2><%= "#{@final['entry'][@i]['title'][0]}" %></h2>
+		</div>
+		<% @i += 1 %>
+		<% end %>
+	</div>
+	<hr>
+	<hr>
+</body>
+</html>

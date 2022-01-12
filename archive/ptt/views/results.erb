@@ -1,0 +1,13 @@
+<div id="results"><a href="#"><div id="one" style='display:inline;'>
+  <%= "<img name=\"#{URI.escape(@films[0]["title"])}\" id='#{@films[0]["id"]}' src='http://image.tmdb.org/t/p/w500#{@films[0]["poster_path"].to_s}'>" %>
+</div></a>
+<% if @films.count >= 2 %>
+<%= "<a href='#'><div id='two' style='display:inline;'>
+  <img name=\"#{URI.escape(@films[1]["title"])}\" id='#{@films[1]["id"]}' src='http://image.tmdb.org/t/p/w500#{@films[1]["poster_path"].to_s}'>
+</div></a>" %>
+<% end %>
+<% if @films.count == 3 %>
+<%= "<a href='#'><div id='three' style='display:inline;'>
+  <img name=\"#{URI.escape(@films[2]["title"])}\" id='#{@films[2]["id"]}' src='http://image.tmdb.org/t/p/w500#{@films[2]["poster_path"].to_s}'>
+</div></a>" %>
+<% end %></div>

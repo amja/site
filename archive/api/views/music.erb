@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>What's Amos Listening to?</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.min.js"></script>
+    <script src="masonry.min.js"></script>
+    <script src="imagesloaded.pkgd.min.js"></script>
+    <script src="//use.edgefonts.net/sofia;pt-sans-narrow.js"></script>
+    <script>
+      $.getJSON("/user.gettopartists/7day", function (data) {
+          $('#spinner').css('display', 'none');
+          for (var i = 0; i < 20; i++) {
+	if(typeof data.topartists.artist[i] == 'undefined') {} else {
+              if (data.topartists.artist[i]['playcount'] > 1) {
+                  no = "plays"
+              } else {
+                  no = "play"
+              }
+              $('#music').append('<a href="' + data.topartists.artist[i].url + '"><div class="item"><img src="' + data.topartists.artist[i].image[4]['#text'] + '"><p>' + data.topartists.artist[i]['name'] + '<br>' + data.topartists.artist[i]['playcount'] + ' ' + no + '</p></div></a>');
+}
+          }
+          $('#music').imagesLoaded(function () {
+              $('#music').masonry({
+                  itemSelector: '.item',
+                  isFitWidth: false
+              });
+              $('#music').css("opacity", "1.0");
+              $(".item p").each(function () {
+                  $(this).css("top", $(this).parent().height() / 2 - $(this).height() / 2);
+              });
+          });
+      });
+      $(document).ready(function () {
+          $('h3 a').bind("click", function () {
+              $('h3 a').removeClass("selected");
+              $("#" + this.id).addClass("selected");
+              $('#music').masonry("destroy").html("");
+              $('#music').css("opacity", "0");
+              $('#spinner').css('display', 'block');
+              $.getJSON("/user.gettopartists/" + this.id, function (data) {
+
+                  for (var i = 0; i < 20; i++) {
+                  if(typeof data.topartists.artist[i] == 'undefined') {} else {
+                      if (data.topartists.artist[i]['playcount'] > 1) {
+                          no = "plays"
+                      } else {
+                          no = "play"
+                      }
+                      $('#music').append('<a href="' + data.topartists.artist[i].url + '"><div class="item"><img src="' + data.topartists.artist[i].image[4]['#text'] + '"><p>' + data.topartists.artist[i]['name'] + '<br>' + data.topartists.artist[i]['playcount'] + ' ' + no + '</p></div></a>');
+                    }
+                  }
+                  $('#music').imagesLoaded(function () {
+                      $('#music').masonry({
+                          itemSelector: '.item',
+                          isFitWidth: false
+                      });
+                      $('#music').css("opacity", "1.0");
+                      $(".item p").each(function () {
+                          $(this).css("top", $(this).parent().height() / 2 - $(this).height() / 2);
+                      });
+                  });
+                  $('#spinner').css('display', 'none');
+              });
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>What's Amos Listening to?</h1>
+      <h2><span class="selected">Artists</span> | <a href="/tracks">Tracks</a></h2>
+      <h3><a id="7day" class="selected" href="#">This Week</a> | <a id="1month" href="#">This Month</a> | <a id="12month" href="#">This Year</a> | <a id="overall" href="#">Overall</a></h3>
+    </header>
+    <section id="music">
+    </section>
+    <div id="spinner">
+      </div>
+  </body>
+</html>

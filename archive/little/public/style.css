@@ -1,0 +1,46 @@
+body{
+
+	width:384px;
+	overflow-x:hidden;
+}
+
+.song{
+	margin-bottom:5px;
+	width:384px;
+
+}
+
+
+
+
+h1{
+	display:inline;
+	font-family:'Quattrocento Roman';
+	font-size:25px;
+	font-weight:bold;
+	
+}
+
+
+h2{
+	display:inline;
+	font-family:'Quattrocento Roman'
+	font-size:23px;
+	font-weight:normal;
+	
+
+}
+
+* {
+	 margin: 0;
+	 padding: 0;
+ }
+#header{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+hr{
+	margin-bottom:1px;
+	border:1px solid black;
+}

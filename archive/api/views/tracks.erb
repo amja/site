@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>What's Amos Listening to?</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.min.js"></script>
+    <script src="masonry.min.js"></script>
+    <script src="imagesloaded.pkgd.min.js"></script>
+    <script src="http://use.edgefonts.net/sofia;pt-sans-narrow.js"></script>
+    <script>
+      $.getJSON("/user.gettoptracks/7day", function(data) {
+        $('#spinner').css('display', 'none');
+        // Placeholder bit
+        for (var i = 0; i < 20; i++) {
+          if(typeof data.toptracks.track[i] == 'undefined') {} else {
+          if(data.toptracks.track[i]['playcount']>1){no = "plays"}else{no = "play"};
+          if (data.toptracks.track[i].image){
+            $('#music').append('<a href="' + data.toptracks.track[i].url + '"><div class="item track"><img src="' + data.toptracks.track[i].image[3]['#text'] + '"><p>' + data.toptracks.track[i]['name'] + '<br>'+ data.toptracks.track[i]['playcount']+' '+ no +'</p></div></a>');
+          } else {
+            $('#music').append('<a href="' + data.toptracks.track[i].url + '"><div class="item track"><img src="http://t0.gstatic.com/images?q=tbn:ANd9GcQQY3PfOa5_AoUvxnsWPcUdhex96Oh75PxiDEf_H2-Tr48GZ3nC2Q"><p>' + data.toptracks.track[i]['name'] + '<br>'+ data.toptracks.track[i]['playcount']+' '+ no +'</p></div></a>');
+          }
+          }
+        }
+        $('#music').imagesLoaded(function() {
+          $('#music').masonry({
+            itemSelector: '.item',
+            isFitWidth: true
+          });
+          $(".item p").each(function(){
+            $(this).css("top", $(this).parent().height()/2-$(this).height()/2);
+          });
+          $('#music').css("opacity", "1.0");
+        });
+      });
+      $(document).ready(function() {
+        $('h3 a').bind("click", function() {
+          if(!$("#" + this.id).hasClass("selected")){
+          $('h3 a').removeClass("selected");
+          $("#" + this.id).addClass("selected");
+          $('#music').masonry("destroy").html("");
+          $('#music').css("opacity", "0");
+          $('#spinner').css('display', 'block');
+          $.getJSON("/user.gettoptracks/" + this.id, function(data) {
+            for (var i = 0; i < 20; i++) {
+              if(typeof data.toptracks.track[i] == 'undefined') {} else {
+              if(data.toptracks.track[i]['playcount']>1){no = "plays"}else{no = "play"};
+              if (data.toptracks.track[i].image){
+                $('#music').append('<a href="' + data.toptracks.track[i].url + '"><div class="item track"><img src="' + data.toptracks.track[i].image[3]['#text'] + '"><p>' + data.toptracks.track[i]['name'] + '<br>'+ data.toptracks.track[i]['playcount']+' '+ no +'</p></div></a>');
+              } else {
+                $('#music').append('<a href="' + data.toptracks.track[i].url + '"><div class="item track"><img src="http://t0.gstatic.com/images?q=tbn:ANd9GcQQY3PfOa5_AoUvxnsWPcUdhex96Oh75PxiDEf_H2-Tr48GZ3nC2Q"><p>' + data.toptracks.track[i]['name'] + '<br>'+ data.toptracks.track[i]['playcount']+' '+ no +'</p></div></a>');
+              }
+              }
+            }
+            $('#music').imagesLoaded(function() {
+              $('#music').masonry({
+                itemSelector: '.item',
+                isFitWidth: true
+              });
+               $(".item p").each(function(){
+              $(this).css("top", $(this).parent().height()/2-$(this).height()/2);
+              $('#music').css("opacity", "1.0");
+            });
+            });
+            $('#spinner').css('display', 'none');
+
+          });
+        }});
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>What's Amos Listening to?</h1>
+      <h2><a href="/">Artists</a> | <span class="selected">Tracks</span></h2>
+      <h3><a id="7day" class="selected" href="#">This Week</a> | <a id="1month" href="#">This Month</a> | <a id="12month" href="#">This Year</a> | <a id="overall" href="#">Overall</a></h3>
+    </header>
+    <div id="wrapper">
+      <section id="music">
+      </section>
+    </div>
+    <div id="spinner">
+      </div>
+  </body>
+</html>

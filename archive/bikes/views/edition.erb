@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://bikes.amos.im/style.css">
+  </head>
+  <body>
+    <h1><%= @station[0]["name"][0].to_s %></h1>
+    <%= "<img class='dither' src='http://maps.googleapis.com/maps/api/staticmap?center=#{@station[0]['lat'][0]},#{@station[0]['long'][0]}&zoom=16&size=192x192&maptype=roadmap
+&markers=color:red%7C#{@station[0]['lat'][0]},#{@station[0]['long'][0]}&sensor=false&key=XXX&style=feature:all%7Csaturation:-100&scale=2'>" %>
+    <p>There are <span><%= @station[0]["nbBikes"][0] %></span> bikes and <span><%= @station[0]["nbEmptyDocks"][0] %></span> empty docks.</p>
+    <hr>
+  </body>
+</html>

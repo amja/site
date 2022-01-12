@@ -1,0 +1,13 @@
+<div id="results2">
+  <% if  @film[0].nil? %>
+  <%= "No Posters found" %>
+  <% else %>
+<%= "<div><img  class='choose' src='http://image.tmdb.org/t/p/w500#{@film[0]["file_path"]}'></div>" %>
+<% end %>
+<% unless  @film[1].nil? %>
+<%= "<div><img  class='choose' src='http://image.tmdb.org/t/p/w500#{@film[1]["file_path"]}'></div>" %>
+<% end %>
+<% unless  @film[2].nil? %>
+<%= "<div><img  class='choose' src='http://image.tmdb.org/t/p/w500#{@film[2]["file_path"]}'></div>" %>
+<% end %>
+</div>
