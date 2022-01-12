@@ -1,1 +1,1 @@
-My personal site, accessible at [amos.im](https://amos.im) ✨
+This branch includes a lot of very old code from my childhood. Not representative of anything :)
