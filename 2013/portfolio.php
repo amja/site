@@ -1,5 +1,0 @@
-<?php include 'header.php';?>
-
-<div id="main"><div id="port"><h3>Portfolio.</h3><p>Selections from my photography can be seen on my <a href="http://photos.amosjackson.com" target="_blank">Photoblog</a>. If you wish to see the full albums, you can see them on my <a href="http://www.flickr.com/photos/amosjackson" target="_blank">Flickr</a>. I also maintain a <a href="http://thesleepyadventurer.tumblr.com" target="_blank">Tumblr</a> but it isn't serious reading matter (Its mostly pictures. But not mine). When I'm bored sometimes, I make animated GIFs and put them on my blog <a href="http://thesleepyadventurer.tumblr.com/tagged/mygif" target="_blank">here</a>. My newest project, however, is a publication for BERG's <a href="http://bergcloud.com/littleprinter/" target="_blank">Little Printer</a>. Mine uses the API from This is My Jam to generate its content. The sample is <a href="http://little.amosjackson.com/sample" target="_blank">here</a>.</p></div></div>
-
-<?php include 'footer.php';?>

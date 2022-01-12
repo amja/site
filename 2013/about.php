@@ -1,5 +1,0 @@
-<?php include 'header.php';?>
-
-<div id="main"><div id="about"><h3>About Me.</h3><p>You're in <?php if($country_name =="United Kingdom"){echo "the ";}echo $country_name;?>? <?php if($country_name =="United Kingdom"){echo "Wow, me too (probably)! There, that's one thing we have in common already.";} else{echo "That's a cool country. Maybe I'll visit you someday.";}?> If you didn't know already, I'm Amos and I'm 14. I live in London and have done for my entire life. Things I like: Nice web design, Typography, Cupcakes. Things I dislike: British weather, Confusing Instruction Manuals, Dust on lenses. Some of my skills are being indecisive and recognising <a href="http://xkcd.com">xkcd</a> references. In school, I enjoy languages (I'm taking French, Russian and Spanish this year) and Physics. Regarding alternative languages, I know basic Python, PHP and small fragments of Ruby. I also do HTML and CSS (of course). I'm bad at almost every sport, an exception being Quidditch. When I'm not being lazy, I take photos with my modest film camera collection (and my 600D).</p></div></div>
-
-<?php include 'footer.php';?>

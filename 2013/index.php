@@ -1,5 +1,0 @@
-
-<?php include 'header.php';?>
-<div id="main"><div id="hello"><h3>Home.</h3><p>Welcome to my little piece of the internet. I'm Amos and I have been alive for 14 years. I enjoy photography, coding and web design, among other things. After many redesigns, this is how my website shall look. I hand-coded it using Sublime Text 2, my favourite code editor. I also like typography and so have used @font-face to allow me to add custom fonts to this site. Many of the fonts here are designed by the lovely people at <a href="http://theleagueofmoveabletype.com" class="inside">The League of Moveable Type</a>. If you have any compliments, comments or criticism, feel free to contact me. For those who are interested, the map at the top is a random choice from a list of places that I've been. It's dynamic so you can drag it around. Have a go.</p></div></div>
-
-<?php include 'footer.php';?>
