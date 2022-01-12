@@ -1,0 +1,203 @@
+body{
+	overflow:hidden;
+	margin:0px;
+	padding:0px;
+	height:100%;
+	width:100%;
+	z-index:0;
+
+}
+
+html{
+
+	width:100%;
+	height:100%;
+}
+header{
+
+	width:100%;
+	height:160px;
+	text-align:center;
+	margin:0px;
+	/*border-bottom: 5px solid #2a3a5e;*/
+	background-color:#e5e3df;
+	z-index:4;
+	
+}
+
+#header{
+	position:absolute;
+	width:100%;
+	height:235px;
+	z-index:3;
+	
+}
+
+h1{
+	transition:font-size 0.5s ease;
+	-webkit-transition:font-size 0.5s ease;
+	-moz-transition:font-size 0.5s ease;
+	-o-transition:font-size 0.5s ease;
+	display:inline-block;
+	margin:0px;
+	margin-top:30px;
+	font-family:Adelle;
+	font-size:64px;
+	color:black;
+	z-index:5;
+	-webkit-text-stroke-width: 1px;
+   	-webkit-text-stroke-color: black;
+}
+
+h2{
+	transition:font-size 0.5s ease;
+	-webkit-transition:font-size 0.5s ease;
+	-moz-transition:font-size 0.5s ease;
+	-o-transition:font-size 0.5s ease;
+	display:inline-block;
+	font-family:ostrich;
+	font-size:30px;
+	margin:0px;
+	margin-bottom:14px;
+	color:black;
+	z-index:5;
+	
+}
+
+#nav{
+	transition:height 0.5s ease;
+	-webkit-transition:height 0.5s ease;
+	-moz-transition:height 0.5s ease;
+	-o-transition:height 0.5s ease;
+	width:100%;
+	border-bottom:1px solid #2a3a5e;
+	background:#2a3a5e;
+	margin:0px;
+	color:white;
+	z-index:3;
+
+	
+}
+
+.links{
+
+	transition:color 1.8s ease-out;
+	-webkit-transition:color 1.8s ease-out;
+	-moz-transition:color 1.8s ease-out;
+	-o-transition:color 1.8s ease-out;
+	text-decoration:none;
+	color:white;
+	font-family:goudy;
+	margin:0px;
+	font-size:40px;
+	padding:10px;
+	top:12px;
+
+}
+
+.links:hover{
+	transition:color 0.4s ease-out;
+	-webkit-transition:color 0.4s ease-out;
+	-moz-transition:color 0.4s ease-out;
+	-o-transition:color 0.4s ease-out;
+	color:#aa0101;
+}
+
+.slash{
+	color:black;
+	font-family:goudy;
+	font-size:40px;
+	top:12px;
+}
+
+
+* {
+  position: relative;
+}
+
+#main{
+	margin-top:-155px;
+	padding:0px;
+	max-width:900px;
+	margin-left:auto;
+	margin-right:auto;
+	height:100%;
+	z-index:1;
+}
+
+#hello, #port, #contact, #about, #fourohfour{
+position:relative;
+top:50%;
+z-index:2;
+}
+
+#hello{
+
+	margin-top:-230px;
+}
+
+#port{
+
+	margin-top:-165px;
+
+}
+
+#contact{
+
+	margin-top:9px;
+
+}
+
+#about{
+
+	margin-top:-231px;
+}
+
+#fourohfour{
+
+	margin-top:-128px;
+}
+h3{
+	font-family:helveticaneue;
+	font-size:50px;
+	margin:0px;
+	margin-bottom:-20px;
+	letter-spacing:-4px;
+
+	
+}
+
+p{
+	
+	font-family:fanwood;
+	font-size:25px;
+}
+
+
+p a:visited, p a{
+	color:#aa0101;
+	text-decoration:none;
+}
+
+::-webkit-scrollbar{
+	background-color:#2a3a5e;
+	width:12px;
+	opacity:0.8;
+}
+
+
+::-webkit-scrollbar-thumb{
+
+	background-color:rgba(63,88,107,0.4);
+}
+
+::-webkit-scrollbar-thumb:hover{
+	background-color:rgba(73,98,117,1.0);
+}
+
+::selection, ::-moz-selection{
+
+	background:#4568b2;
+	color:white;
+	
+}

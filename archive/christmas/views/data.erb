@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <h1>How much school do I have left?</h1>
+    <div id="container" style="width:500px;">
+	<h2>You have <span class='bold'><%= @weekdays %></span> days left of school.<h2>
+	<h3>That's <span class='bold'><%= @schoolhours%></span> hours</h3><h4>or</h4><h3><span class='bold'><%= @minutes%></span> minutes</h3><h3>By then, the ISS will have orbited the earth <span class='bold'><%=@orbits%></span> times</h3><h3>The earth will have travelled <span class='bold'><%=@travels%></span>km around the sun</h3><h3>A shoot of bamboo will have grown <span class='bold'><%=@length%></span> metres.</h3><h3><span class='bold'><%=@deaths%></span> people will have died by the time school finishes.</h3>
+    </div>
+  </body>
+</html>

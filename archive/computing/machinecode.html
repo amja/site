@@ -1,0 +1,220 @@
+<!doctype html>
+<head>
+    <title>Basic Machine Code Operations & The Fetch-Execute Cycle</title>
+    <meta name="author" content="William Eustace">
+    <link rel="stylesheet" href="style.css">
+    <!--[if IE]>
+    <style>* {
+    font-family: "comic sans MS"!important;
+} </style>
+    <![endif]-->
+</head>
+
+<body>
+    <header>
+        <div id="div">
+            <h1>Computing Revision Guide</h1>
+            <h2>Chapter 7.3: Machine Code Operations & the Fetch Execute Cycle</h2>
+        </div>
+        <nav>
+            <ul>
+                <a href="logicgates.html"><li><span>Chapter 7.1</span> <span>Logic Gates and Boolean Algebra</span></li></a>
+              <a href="computerarchitecture.html"><li><span>Chapter 7.2</span> <span>Computer Architecture</span></li></a>
+              <a href="machinecode.html"><li id="chosen"><span>Chapter 7.3</span> <span>Machine Code Operations and the Fetch-Execute Cycle</span></li></a>
+              <a><li><span>Chapter 8.1</span> <span>Hardware Devices</span></li></a>
+              <a href="classificationofsoftware.html"><li><span>Chapter 8.2</span> <span>Classification of Software</span></li></a>
+              <a href="structureoftheinternet.html"><li><span>Chapter 9.1</span> <span>Structure of the Internet</span></li></a>
+              <a><li><span>Chapter 10.1</span> <span>Legal and Ethical Issues</span></li></a>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="content">
+
+        <h1>Table of Contents</h1>
+
+        <section id="contents">
+            <ol>
+                <a href="#MachineCode"><li>Machine Code</li></a>
+                <a href="#InstructionSets"><li>Instruction Sets</li></a>
+                <a href="#FetchExecuteCycle"><li>The Fetch-Execute Cycle</li></a>
+                <a href="#KeyWords"><li>Key Words & Definitions</li></a>
+            </ol>
+        </section>
+
+        <section id="MachineCode" class="line">
+          <h3>Machine Code Instructions</h3>
+          <details>
+          <summary>Summary</summary>
+          Digital computers can operate only on binary information. Instructions are no exception to this; they must be
+          converted to 'machine code' (instructions in binary) before being processed. A machine code instruction consists
+          of an operand and an op-code specifying the operation to perform upon it; Assembly language is a set of mnemonics for these operations to make programming with them easier.
+          Hexadecimal addresses are generally used for memory locations, as they are easier for humans to remember.
+          A memory dump may be used to debug a machine code or Assembly program.
+          <strong>"A Machine Code Instruction is a binary code that machines can execute."</strong>
+          </details>
+
+          <p>Since digital computers (as the name implies) work solely in discrete logic levels, the
+          instructions which are to be issued to a programmable digital computer are invariably in binary;
+          "Machine Code".  Machine code is the lowest level of instruction; it is what is stored on disk,
+          loaded into main memory and executed by the processor.  High-level languages work in one of several
+          ways: they use a <i> compiler </i> to convert the language into machine code, often via an intermediate,
+          they use an <i>interpreter</i> <!-- Please note: using <i> is NOT wrong here: http://programmers.stackexchange.com/questions/255366/why-are-the-b-and-i-tags-deprecated -->
+          to execute their code statement-by-statement, "on the fly". The statements are <strong>not</strong>
+          compiled into machine code, but instead the interpreter decodes them and executes them using its own
+          routines.</p>
+
+          <p>
+          A machine code instruction consists of an op-code and an operand. They are in different parts (of a pre-determined
+          bit length) of the instruction:
+        </p>
+          <img src="img/opcode_operand.svg" alt = "Opcode is at the more significant end" />
+          <p>Note that the operand consists of a <strong>single item of binary data</strong> (or the address thereof).
+          </p>
+          <p>
+            Assembly code may be thought of as a direct representation of machine code; instead of
+            the op-code (eg <code>0100 1011</code>) one uses a mnemonic such as <code>ADD</code>. Assembly language is
+            converted to machine code by an <i>Assembler</i>. From here onwards, the Assembly names will
+            generally be used to refer to a machine code operation.
+          </p>
+          <p>
+          A machine code operation might be something like <code>LOAD</code>&mdash;which loads data from main memory into the accumulator&mdash;
+          or <code>ADD</code>&mdash;which adds the value specified (which may be an address or a constant value)
+          to the value in the accumulator. There are also branch commands, such as <code>jz addr</code>, which
+          jumps to the specified program counter value if the 'zero' flag in the processor has been set by the
+          previous operation; here, "jz" stands for "jump if zero".
+          </p>
+          <p>
+            Even if you are hard-core enough to program in machine code, it is generally a pain to recall
+            and enter long binary opcodes. For this reason, those <a href = "http://www.guidenet.net/resources/programmers.html">real programmers</a>
+            who use machine code regularly almost invariably use hex (i.e. base 16) rather than binary.
+            This is especially pertinent in the modern day, when memory addresses may be very large,
+            and spread across several pages of memory.
+          </p>
+          <p>
+            When a Real Programmer (one who uses Machine Code) debugs a program (which he must often do),
+            he <!--NOTE - this is a GENDER NEUTRAL PRONOUN by convention of the ENGLISH LANGUAGE. Live with it. -->
+            asks for a <i>memory dump</i>. This involves printing out the contents and addresses of all of the
+            memory currently in use by the program; it may then be manually analysed, although this is a very
+            arduous task in increasingly high-memory situations. A memory dump might look like this (Mwtoews/Commons, GNU FDL):
+            <img src = "img/Wikipedia_favicon_hexdump.svg"></img>
+            <br>Fun, eh?
+          </p>
+
+        </section>
+
+        <section id="InstructionSets" class="line">
+          <h3>Instruction Sets</h3>
+          <details>
+            <summary>Summary</summary>
+            The instruction set is the set of op-codes which a given architecture (e.g. Intel x86) supports.
+            Addressing modes are part of an op-code which specifies how to find the operand.
+          </details>
+          <p>
+            An Instruction Set may be considered as the set of legal opcodes which can be passed into the
+            CPU; for instance, if one had an instruction set with only one bit, one could only pass in two instructions.
+            These might be <code>add x</code> and <code>load reg</code>.
+          </p>
+          <p>
+            In the real world, one of the most common desktop instruction sets is Intel's x86, with AMD64 (a 64-bit
+            extension of the 32-bit x86 set) also very popular. The x86 instruction set (so named because it first
+            appeared on Intel's xx86 series of chips) supports a variety of instructions in addition to the core of
+            mathematical ones; for instance, most modern Intel i386 chips come with built-in AES instructions,
+            which permits use of a highly optimised hardware encryption system.
+          </p>
+          <p>
+            Each instruction is usually an opcode followed by an operand; the form this operand takes may vary.
+            The way in which the operand relates to the value and location upon which the operation should be performed
+            is determined by setting the addressing mode in the op-code.
+          </p>
+          <p>
+            <code>mov #10, eax</code> moves the constant value "10" into the accumulator (eax).
+          </p>
+          <p>
+            This is an example of direct addressing; the address targeted (eax) is the address passed in.
+            The book terms this "Operand to register transfer"
+          </p>
+          <p>
+            <code>j +2</code> advances the program counter by 2. This is used as a flow control statement.
+          </p>
+          <p>
+            This is an example of PC (program-counter)-relative addressing. The book does not mention it.
+          </p>
+          <p>
+            <code>nop</code> performs no operation (used in delay functions e.t.c.)
+          </p>
+          <p>
+            This has no operand; the book describes it as "Operand part not used".
+          </p>
+          <p>
+            <code>load FFEAE3</code> loads the item at memory location FFEAE3 into the accumulator.
+          </p>
+          <p>
+            This is termed a "register transfer involving main memory", which is a fair description!
+          </p>
+          <p>In short, the different addressing modes control how the operand is found.</p>
+
+        </section>
+        <section id="FetchExecuteCycle" class="line">
+          <h3>Fetch-Execute cycle</h3>
+          <details class = "section_summary">
+            <summary>Summary</summary>
+            Almost all stored-program computers perform some variant on the Fetch-Execute cycle, which
+            always involves several key registers.
+            Instructions are fetched, decoded and executed one by one.
+          </details>
+          <p>
+            Key registers:
+            <ul>
+              <li>PC: Program Counter; keeps track of the next instruction to be executed. May be
+                incremented non-linearly by jump instructions (not on syllabus).</li>
+              <li>MAR: Memory Address Register; stores the address in memory being either read from or
+                written to.</li>
+              <li>MBR: Memory Buffer Register. Also known as MDR (Memory Data Register).
+                Stores data received from main memory until it is used; may also be used when writing to main
+                memory.</li>
+              <li>CIR: Current Instruction Register. <strong>Not to be confused with the Program Counter.</strong>
+                This holds the latest instruction retrieved.</li>
+              </ul>
+              I find it most useful to consider this in terms of register transfer rather than
+              drawing diagrams of different system states, so I have omitted these; they are confusing and of
+              limited use.
+            </p>
+            <p>Without further ado, the Fetch-Execute Cycle:</p>
+          <ol>
+            <li>The address of the next instruction is transferred from the PC to the MAR.</li>
+            <li>The memory read flag is raised and the resultant data transferred to the MBR.</li>
+            <li>(Simultaneous with previous point) The program counter is incremented.</li>
+            <li>Contents of the MBR copied to the CIR.</li>
+            <li>Instruction now held in the CIR is decoded and executed.</li>
+          </ol>
+        </section>
+        <section id="KeyWords" class="line">
+          <h3>Key words</h3>
+          <ul>
+            <li><i>Machine Code:</i> "a binary code which a machine can execute." The book states "which a machine
+              can understand and execute", but getting into a debate on the nature of understanding in
+              the middle of a computing examination would seem to be an idea of questionable merit.</li>
+            <li><i>Op-Code:</i> "the part of a machine code instruction that denotes the basic machine operation, e.g. <code>add</code>."</li>
+            <li><i>Operand:</i> "The part of a machine code instructino that represents a single item of binary data or the address thereof."</li>
+            <li><i>Compiled High-Level Language:</i> "A language translated into machine code before it is executed on a digital computer." I do
+              not much like this definition, since it seems unnecessary given a more general knowledge of the subject.</li>
+            <li><i>Instruction Set:</i> "The set of bit patterns or binary codes for the machine operations that
+              a processor has been designed to perform."</li>
+            <li><i>EPIC:</i> Extended Parallel Instruction Computing. "As well as the instruction to be executed...contains
+              information on how to execute the instruction in parallel with others." This is implemented (most notably at present)
+              in Intel's Itanium framework, which is used primarily for servers and is not very popular, partially because the
+              architecture is different enough to require code rewrites.</li>
+            <li><i>Addressing Mode:</i>"denotes how the operands should be interpreted." Need to know following three:</li>
+            <li><i>Register Transfer Involving Main Memory</i></li>
+            <li><i>Operand to Register transfer</i></li>
+            <li><i>Operand part not used.</i></li>
+            <li>Register names: see <a href = "#FetchExecuteCycle">Fetch Execute Cycle.</a></li>
+          </ul>
+
+        </section>
+    </section>
+
+</body>
+
+</html>
