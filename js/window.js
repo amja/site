@@ -24,6 +24,7 @@ window.onload = () => {
     updateAge();
 
     setupWindowDraggingBehaviour();
+    animatePossums();
 };
 
 const updateAge = () => {
@@ -43,7 +44,7 @@ const onMinimiseButtonTapped = () => {
     const originalContent = todo.innerHTML;
     todo.innerHTML = "";
     todo.innerHTML = originalContent;
-    
+
     todo.classList.add("flash");
     todo.style.animation = "none";
     todo.offsetHeight;
@@ -59,7 +60,7 @@ const onFullScreenButtonTapped = () => {
         announcementElement.style.display = "none";
         announcementElement.innerHTML = "";
     }, 500);
-    
+
     if (usedTexts.length == POSSIBLE_TEXTS.length) {
         usedTexts = []
     }
@@ -109,7 +110,7 @@ const onChromeDragStarted = e => {
 
     e.preventDefault();
     e.target.style.cursor = "grabbing";
-    
+
     var mouseX = e.clientX;
     var mouseY = e.clientY;
     makeWindowAbsolute();
@@ -145,3 +146,43 @@ const goBack = () => {
 };
 
 const px = val => `${val}px`;
+
+const animatePossums = () => {
+    const items = document.querySelectorAll (".possum-wrapper img");
+    var tick = 0;
+    const updateFrame = () => {
+        // To update when window resizes.
+        const circleRadius = Math.min(window.innerWidth, window.innerHeight) / 2;
+        const wrapperElement = document.getElementsByClassName("possum-wrapper")[0];
+        for (i = 0; i < items.length; i++) {
+            const angle = (i / items.length) * (2 * Math.PI) + tick;
+            items[i].style.top = px(Math.sin(angle) * circleRadius / 2 + wrapperElement.offsetTop + wrapperElement.offsetHeight / 2 - items[i].offsetHeight / 2);
+            items[i].style.left = px(Math.cos(angle) * circleRadius + wrapperElement.offsetLeft + wrapperElement.offsetWidth / 2 - items[i].offsetWidth / 2);
+            items[i].style.transform = `perspective(100px) translateZ(${Math.sin(angle) * 25}px)`
+        }
+        tick += 0.002
+    };
+
+    if (!window.matchMedia("(prefers-reduced-motion)").matches) {
+        setInterval(updateFrame, 10);
+    } else {
+        updateFrame();
+    }
+    
+    for (i = 0; i < 35; i++) {
+        const div = document.createElement("div");
+        div.innerHTML = "💖";
+        div.style.rotate = `${Math.floor((Math.random() - 0.5) * 45)}deg`;
+        div.className = "heart";
+        document.getElementsByClassName("possums")[0].appendChild(div);
+    }
+
+    for (heart of document.getElementsByClassName("heart")) {
+        heart.style.top = px(Math.random() * window.innerHeight);
+        heart.style.left = px(Math.random() * window.innerWidth);
+    }
+}
+
+const closePossums = () => {
+    document.getElementsByClassName("possums")[0].style.animation = "1s fade-out ease-in-out forwards"
+}
