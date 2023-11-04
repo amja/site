@@ -5,6 +5,9 @@ const WINDOW_ABSOLUTE_CLASS = "absolute";
 const WINDOW_PLACEHOLDER_CLASS = "window-placeholder";
 const LOADING_VIEW_CLASS = "loading-view";
 const TEXT_CONTAINER_CLASS = "text-container";
+const MAIN_WRAPPER = "main-wrapper";
+const PUSH_BACK_CLASS = "pushed-back";
+const POSSUMS_SHOW_CLASS = "possums-shown";
 const MAX_ZOOM_WIDTH = 3500000;
 const POSSIBLE_TEXTS = [
     `Is it time to log off?`,
@@ -24,7 +27,6 @@ window.onload = () => {
     updateAge();
 
     setupWindowDraggingBehaviour();
-    animatePossums();
 };
 
 const updateAge = () => {
@@ -79,7 +81,7 @@ const onFullScreenButtonTapped = () => {
     windowElement.style.top = px(originalSize.top - addedHeight / 2);
 
     document.getElementsByClassName(LOADING_VIEW_CLASS)[0].classList.add("display");
-    document.getElementById("main-wrapper").ariaHidden = true;
+    document.getElementById(MAIN_WRAPPER).ariaHidden = true;
 }
 
 const makeWindowAbsolute = () => {
@@ -142,7 +144,7 @@ const goBack = () => {
     document.getElementsByClassName(WINDOW_PLACEHOLDER_CLASS)[0].style.display = "none";
 
     document.getElementsByClassName(LOADING_VIEW_CLASS)[0].classList.remove("display");
-    document.getElementById("main-wrapper").ariaHidden = false;
+    document.getElementById(MAIN_WRAPPER).ariaHidden = false;
 };
 
 const px = val => `${val}px`;
@@ -169,9 +171,10 @@ const animatePossums = () => {
         updateFrame();
     }
     
-    for (i = 0; i < 35; i++) {
+    for (i = 0; i < 20; i++) {
         const div = document.createElement("div");
         div.innerHTML = "💖";
+        div.ariaHidden = true;
         div.style.rotate = `${Math.floor((Math.random() - 0.5) * 45)}deg`;
         div.className = "heart";
         document.getElementsByClassName("possums")[0].appendChild(div);
@@ -183,6 +186,15 @@ const animatePossums = () => {
     }
 }
 
+const showPossums = () => {
+    animatePossums();
+    document.getElementById(MAIN_WRAPPER).classList.add(PUSH_BACK_CLASS);
+    document.getElementsByClassName("possums")[0].classList.add(POSSUMS_SHOW_CLASS);
+    document.getElementById(MAIN_WRAPPER).ariaHidden = true;
+}
+
 const closePossums = () => {
-    document.getElementsByClassName("possums")[0].style.animation = "1s fade-out ease-in-out forwards"
+    document.getElementsByClassName("possums")[0].classList.remove(POSSUMS_SHOW_CLASS);
+    document.getElementById(MAIN_WRAPPER).classList.remove(PUSH_BACK_CLASS);
+    document.getElementById(MAIN_WRAPPER).ariaHidden = false;
 }
