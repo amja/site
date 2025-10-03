@@ -1,18 +1,22 @@
-@charset "UTF-8";
 @font-face {
   font-family: Fondamento;
-  src: url("../fonts/Fondamento/Fondamento-Regular.woff2") format("woff2"), url("../fonts/Fondamento/Fondamento-Regular.ttf") format("truetype");
+  src: url("../fonts/Fondamento/Fondamento-Regular.woff2") format("woff2"),
+    url("../fonts/Fondamento/Fondamento-Regular.ttf") format("truetype");
 }
+
 @font-face {
   font-family: Cormorant;
   font-weight: bold;
-  src: url("../fonts/Cormorant/Cormorant-BoldItalic.woff2") format("woff2"), url("../fonts/Cormorant/Cormorant-BoldItalic.ttf") format("truetype");
+  src: url("../fonts/Cormorant/Cormorant-BoldItalic.woff2") format("woff2"),
+    url("../fonts/Cormorant/Cormorant-BoldItalic.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "Cormorant Upright";
-  src: url("../fonts/Cormorant_Upright/CormorantUpright-Regular.woff2") format("woff2"), url("../fonts/Cormorant_Upright/CormorantUpright-Regular.ttf") format("truetype");
+  src: url("../fonts/Cormorant_Upright/CormorantUpright-Regular.woff2") format("woff2"),
+    url("../fonts/Cormorant_Upright/CormorantUpright-Regular.ttf") format("truetype");
 }
-/* line 20, ../sass/style.scss */
+
 :root {
   --primary-bg: #fffaf4;
   --checker-colour: #B7D2F3;
@@ -24,11 +28,10 @@
   --chrome-button-color: #ADADAD;
   --chrome-text-color: #3F3F3F;
   --chrome-border-top-color: #ECECEC;
-  --loading-view-transition-time: 14s;
+  --loading-view-transition-time: 5s;
 }
 
 @media (prefers-color-scheme: dark) {
-  /* line 35, ../sass/style.scss */
   :root {
     --primary-bg: #2c3638;
     --checker-colour: #4970a0;
@@ -42,8 +45,9 @@
     --chrome-border-top-color: #676767;
   }
 }
-/* line 49, ../sass/style.scss */
-body, html {
+
+body,
+html {
   height: 100%;
   line-height: 1;
   margin: 0;
@@ -51,14 +55,12 @@ body, html {
   width: 100%;
 }
 
-/* line 57, ../sass/style.scss */
 body {
   background-color: black;
   color: var(--body-colour);
   position: relative;
 }
 
-/* line 63, ../sass/style.scss */
 .loading-view {
   align-items: center;
   background: black;
@@ -79,56 +81,56 @@ body {
   visibility: hidden;
   width: 100%;
   z-index: 0;
-}
-/* line 84, ../sass/style.scss */
-.loading-view.display {
-  opacity: 1;
-  transition: opacity calc(var(--loading-view-transition-time) - 6s) ease calc(var(--loading-view-transition-time) - 8s);
-  visibility: visible;
-  z-index: 4;
-}
-/* line 90, ../sass/style.scss */
-.loading-view.display * {
-  opacity: 1;
-}
-/* line 94, ../sass/style.scss */
-.loading-view.display img {
-  transition: opacity 1s ease calc(var(--loading-view-transition-time) - 4s);
-}
-/* line 98, ../sass/style.scss */
-.loading-view.display :nth-child(3) {
-  transition: opacity 1s ease calc(var(--loading-view-transition-time) - 2s);
-}
-/* line 102, ../sass/style.scss */
-.loading-view.display > button {
-  transition: opacity 1s ease calc(var(--loading-view-transition-time) + 1s);
-}
-/* line 107, ../sass/style.scss */
-.loading-view *:not(img) {
-  color: #f0f0f0;
-  max-width: 50ch;
-  opacity: 0;
-}
-/* line 113, ../sass/style.scss */
-.loading-view img {
-  animation: rotate 0.6s linear infinite;
-  opacity: 0;
-  transform: rotate(0deg);
-  width: 25px;
-}
-/* line 120, ../sass/style.scss */
-.loading-view > button {
-  background: none;
-  border: none;
-  font-family: "Cormorant Upright";
-  font-size: 1.2rem;
-  outline: inherit;
-  padding: 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-/* line 129, ../sass/style.scss */
-.loading-view > button:hover {
-  border-bottom-style: dotted;
+
+  &.display {
+    opacity: 1;
+    transition: opacity calc(var(--loading-view-transition-time) - 4s) ease 1s;
+    visibility: visible;
+    z-index: 4;
+
+    * {
+      opacity: 1;
+    }
+
+    img {
+      transition: opacity 1s ease calc(var(--loading-view-transition-time) - 2s);
+    }
+
+    :nth-child(3) {
+      transition: opacity 1s ease calc(var(--loading-view-transition-time) - 0.5s);
+    }
+
+    >button {
+      transition: opacity 1s ease calc(var(--loading-view-transition-time));
+    }
+  }
+
+  :not(img) {
+    color: #f0f0f0;
+    max-width: 50ch;
+    opacity: 0;
+  }
+
+  img {
+    animation: rotate 0.6s linear infinite;
+    opacity: 0;
+    transform: rotate(0deg);
+    width: 25px;
+  }
+
+  >button {
+    background: none;
+    border: none;
+    font-family: "Cormorant Upright";
+    font-size: 1.2rem;
+    outline: inherit;
+    padding: 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:hover {
+      border-bottom-style: dotted;
+    }
+  }
 }
 
 @keyframes rotate {
@@ -136,7 +138,7 @@ body {
     transform: rotate(-360deg);
   }
 }
-/* line 141, ../sass/style.scss */
+
 #checkerboard-3d-wrapper {
   animation: delayed-hide 0s 2.3s forwards;
   height: 100%;
@@ -154,15 +156,16 @@ body {
     width: 0;
   }
 }
-/* line 159, ../sass/style.scss */
+
 #checkerboard {
+  --check-size: 90px;
   display: none;
   align-items: center;
   animation: spin 1.5s 0.8s forwards;
   background-color: var(--checker-colour);
   background-image: linear-gradient(45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(-45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(135deg, var(--checker-colour), var(--primary-bg));
-  background-size: 90px 90px, 90px 90px, 90px 90px, 90px 90px, 100% 100%;
-  background-position: 45px 45px, 0 0, -45px 0, 0 45px, 0 0;
+  background-size: var(--check-size) var(--check-size), var(--check-size) var(--check-size), var(--check-size) var(--check-size), var(--check-size) var(--check-size), 100% 100%;
+  background-position: calc(var(--check-size) / 2) calc(var(--check-size) / 2), 0 0, calc(-1 * var(--check-size) / 2) 0, 0 calc(var(--check-size) / 2), 0 0;
   box-sizing: border-box;
   color: var(--intro-text-colour);
   display: flex;
@@ -180,21 +183,22 @@ body {
   0% {
     transform: rotateX(0.00001deg) rotateZ(0.00001deg) translateZ(0.1px);
   }
+
   100% {
     transform: rotateX(90deg) rotateZ(90deg);
   }
 }
-/* line 191, ../sass/style.scss */
+
 h1 {
   animation: shimmer 5s ease infinite;
-  color: #9fffaf;
+  color: rgb(159, 255, 175);
   font-family: Cormorant;
   font-size: 6rem;
   -moz-background-clip: text;
   -o-background-clip: text;
   -webkit-background-clip: text;
   background-clip: text;
-  background-image: -webkit-linear-gradient(45deg, #9fffaf, #45b5ff, #ff78f8 45%, #ff78f8, #ff78f8 55%, #45b5ff, #9fffaf 95%);
+  background-image: -webkit-linear-gradient(45deg, rgb(159, 255, 175), rgb(69, 181, 255), rgb(255, 120, 248) 45%, rgb(255, 120, 248), rgb(255, 120, 248) 55%, rgb(69, 181, 255), rgb(159, 255, 175) 95%);
   background-size: 200% 100%;
   margin: 0 0 10px 0;
   -webkit-text-fill-color: transparent;
@@ -204,25 +208,30 @@ h1 {
   from {
     background-position: 0 0;
   }
+
   50% {
     background-position: 100% 100%;
   }
+
   to {
     background-position: 0 0;
   }
 }
-/* line 219, ../sass/style.scss */
+
 .wiggly-line {
-  background-image: linear-gradient(45deg, transparent, transparent 48%, var(--wiggle-colour) 48%, var(--wiggle-colour) 52%, transparent 52%), linear-gradient(-45deg, transparent, transparent 48%, var(--wiggle-colour) 48%, var(--wiggle-colour) 52%, transparent 52%);
-  background-size: 14px 14px;
-  height: 7px;
+  --wiggle-size: 7px;
+  --grad-end: 52%;
+  --grad-start: 48%;
+
+  background-image: linear-gradient(45deg, transparent, transparent var(--grad-start), var(--wiggle-colour) var(--grad-start), var(--wiggle-colour) var(--grad-end), transparent var(--grad-end)), linear-gradient(-45deg, transparent, transparent var(--grad-start), var(--wiggle-colour) var(--grad-start), var(--wiggle-colour) var(--grad-end), transparent var(--grad-end));
+  background-size: calc(var(--wiggle-size) * 2) calc(var(--wiggle-size) * 2);
+  height: var(--wiggle-size);
   margin-top: -20px;
   position: relative;
   width: 100%;
   z-index: -1;
 }
 
-/* line 233, ../sass/style.scss */
 #pronouns {
   color: var(--subtitle-colour);
   font-size: 1.2rem;
@@ -230,7 +239,6 @@ h1 {
   text-align: center;
 }
 
-/* line 240, ../sass/style.scss */
 p {
   font-family: "Cormorant Upright";
   font-size: 1.5rem;
@@ -239,42 +247,40 @@ p {
   line-height: 2rem;
   text-align: justify;
   width: 0;
+
+  .bold {
+    font-weight: bold;
+  }
 }
 
-/* line 250, ../sass/style.scss */
 a {
   color: var(--body-colour);
 }
 
-/* line 254, ../sass/style.scss */
 ul {
   list-style: none;
   padding: 0;
 }
 
-/* line 259, ../sass/style.scss */
-p + ul {
+p+ul {
   margin-top: -1rem;
 }
 
-/* line 263, ../sass/style.scss */
 li {
   font-family: "Cormorant Upright";
   font-size: 1.3rem;
   line-height: 1.8rem;
-}
-/* line 268, ../sass/style.scss */
-li:before {
-  content: "–";
-  margin-right: 5px;
+
+  &:before {
+    content: "–";
+    margin-right: 5px;
+  }
 }
 
-/* line 274, ../sass/style.scss */
 .strikethrough {
   text-decoration: line-through;
 }
 
-/* line 278, ../sass/style.scss */
 #main-wrapper {
   align-items: flex-start;
   background-color: var(--primary-bg);
@@ -288,7 +294,6 @@ li:before {
   width: 100%;
 }
 
-/* line 291, ../sass/style.scss */
 .pushed-back {
   transform: perspective(10px) translateZ(-2px);
   border: 0.5px solid white;
@@ -297,200 +302,189 @@ li:before {
   opacity: 0.8;
 }
 
-/* line 299, ../sass/style.scss */
 main {
   overflow: visible;
   padding-bottom: 1.5rem;
   position: relative;
   top: 20%;
   z-index: 0;
-}
-/* line 306, ../sass/style.scss */
-main .window-placeholder {
-  align-items: center;
-  display: none;
-  justify-content: center;
-  margin-top: 1.5rem;
-  position: relative;
-}
-/* line 313, ../sass/style.scss */
-main .window-placeholder p {
-  text-align: center;
-}
-/* line 318, ../sass/style.scss */
-main .window {
-  border-radius: 12px;
-  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-  min-width: 100%;
-  position: relative;
-  transform: rotate3d(0, 1, 0, 0deg);
-  transition: transform 1s ease;
-  width: 0;
-  z-index: 0;
-}
-/* line 331, ../sass/style.scss */
-main .window.rotated {
-  transform: rotate3d(0, 1, 0, 180deg);
-}
-/* line 335, ../sass/style.scss */
-main .window.absolute {
-  position: fixed;
-  margin-top: 0;
-  min-width: auto;
-  z-index: 2;
-}
-/* line 342, ../sass/style.scss */
-main .window.enlarged {
-  transition-property: top, left, width;
-  transition-duration: 32s;
-  transition-timing-function: ease-in-out;
-}
-/* line 347, ../sass/style.scss */
-main .window.enlarged img {
-  image-rendering: pixelated;
-}
-/* line 352, ../sass/style.scss */
-main .window img {
-  border-radius: 0 0 12px 12px;
-  width: 100%;
-}
-/* line 357, ../sass/style.scss */
-main .window .todo {
-  background: black;
-  color: #f0f0f0;
-  font-family: monospace;
-  font-size: 2rem;
-  opacity: 0;
-  position: absolute;
-  top: 100px;
-  visibility: hidden;
-}
-/* line 368, ../sass/style.scss */
-main .window .todo.flash {
-  animation: flash 2s 0.8s ease forwards;
-  opacity: 1;
-  visibility: visible;
-}
-@keyframes flash {
-  to {
-    visibility: hidden;
-    opacity: 0;
+
+  .window-placeholder {
+    align-items: center;
+    display: none;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+
+    p {
+      text-align: center;
+    }
+  }
+
+  .window {
+    border-radius: 12px;
+    box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    min-width: 100%;
+    position: relative;
+    transform: rotate3d(0, 1, 0, 0deg);
+    transition: transform 1s ease;
+    width: 0;
+    z-index: 0;
+
+    &.rotated {
+      transform: rotate3d(0, 1, 0, 180deg);
+    }
+
+    &.absolute {
+      position: fixed;
+      margin-top: 0;
+      min-width: auto;
+      z-index: 2;
+    }
+
+    &.enlarged {
+      transition-property: top, left, width;
+      transition-duration: 32s;
+      transition-timing-function: ease-in-out;
+
+      img {
+        image-rendering: pixelated;
+      }
+    }
+
+    img {
+      border-radius: 0 0 12px 12px;
+      width: 100%;
+    }
+
+    .todo {
+      background: black;
+      color: #f0f0f0;
+      font-family: monospace;
+      font-size: 2rem;
+      opacity: 0;
+      position: absolute;
+      top: 100px;
+      visibility: hidden;
+    }
+
+    .todo.flash {
+      animation: flash 2s 0.8s ease forwards;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @keyframes flash {
+      to {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+
+  .chrome {
+    align-items: center;
+    background-color: var(--chrome-background);
+    border-top: 0.25px solid var(--chrome-border-top-color);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 12px 12px 0 0;
+    box-sizing: border-box;
+    color: var(--chrome-text-color);
+    cursor: grab;
+    display: flex;
+    font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    height: 52px;
+    justify-content: space-between;
+    line-height: 8px;
+    padding: 0 23px;
+
+    .buttons {
+      display: flex;
+      gap: 7.5px;
+
+      button {
+        background: none;
+        border: none;
+        border-radius: 6.5px;
+        height: 11.5px;
+        outline: inherit;
+        padding: 0;
+        width: 11.5px;
+
+        &:first-child {
+          background-color: #FF5E57;
+          border: 0.5px solid #E04037;
+        }
+
+        &:nth-child(2) {
+          background-color: #FEBC2E;
+          border: 0.5px solid #DE9C1B;
+        }
+
+        &:nth-child(3) {
+          background-color: #28C73E;
+          border: 0.5px solid #19A823;
+        }
+      }
+    }
+
+    .filename {
+      margin-left: 22.5px;
+      margin-top: 0.08rem;
+    }
+
+    .chrome-left-contents,
+    .chrome-right-contents {
+      display: flex;
+    }
+
+    .chrome-right-contents {
+      gap: 10px;
+
+      div {
+        background-color: var(--chrome-button-color);
+      }
+
+      .chrome-line {
+        height: 20px;
+        width: 1px;
+      }
+
+      div:not(.chrome-line) {
+        --dot-size: 19px;
+        border-radius: var(--dot-size);
+        box-sizing: border-box;
+        height: var(--dot-size);
+        justify-self: right;
+        width: var(--dot-size);
+      }
+    }
   }
 }
-/* line 382, ../sass/style.scss */
-main .chrome {
-  align-items: center;
-  background-color: var(--chrome-background);
-  border-top: 0.25px solid var(--chrome-border-top-color);
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
-  border-radius: 12px 12px 0 0;
-  box-sizing: border-box;
-  color: var(--chrome-text-color);
-  cursor: grab;
-  display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  height: 52px;
-  justify-content: space-between;
-  line-height: 8px;
-  padding: 0 23px;
-}
-/* line 400, ../sass/style.scss */
-main .chrome .buttons {
-  display: flex;
-  gap: 7.5px;
-}
-/* line 404, ../sass/style.scss */
-main .chrome .buttons button {
-  background: none;
-  border: none;
-  border-radius: 6.5px;
-  height: 11.5px;
-  outline: inherit;
-  padding: 0;
-  width: 11.5px;
-}
-/* line 413, ../sass/style.scss */
-main .chrome .buttons button:first-child {
-  background-color: #FF5E57;
-  border: 0.5px solid #E04037;
-}
-/* line 418, ../sass/style.scss */
-main .chrome .buttons button:nth-child(2) {
-  background-color: #FEBC2E;
-  border: 0.5px solid #DE9C1B;
-}
-/* line 423, ../sass/style.scss */
-main .chrome .buttons button:nth-child(3) {
-  background-color: #28C73E;
-  border: 0.5px solid #19A823;
-}
-/* line 430, ../sass/style.scss */
-main .chrome .filename {
-  margin-left: 22.5px;
-  margin-top: 0.08rem;
-}
-/* line 435, ../sass/style.scss */
-main .chrome .chrome-left-contents, main .chrome .chrome-right-contents {
-  display: flex;
-}
-/* line 439, ../sass/style.scss */
-main .chrome .chrome-right-contents {
-  gap: 10px;
-}
-/* line 442, ../sass/style.scss */
-main .chrome .chrome-right-contents div {
-  background-color: var(--chrome-button-color);
-}
-/* line 446, ../sass/style.scss */
-main .chrome .chrome-right-contents .chrome-line {
-  height: 20px;
-  width: 1px;
-}
-/* line 451, ../sass/style.scss */
-main .chrome .chrome-right-contents div:not(.chrome-line) {
-  border-radius: 19px;
-  box-sizing: border-box;
-  height: 19px;
-  justify-self: right;
-  width: 19px;
-}
 
-/* line 463, ../sass/style.scss */
 #face-1 {
   left: -50%;
   top: 0;
-  transform: rotate(10deg);
-  width: 53%;
-}
-/* line 469, ../sass/style.scss */
-#face-1 video {
-  height: 100%;
-  width: 100%;
-}
-/* line 473, ../sass/style.scss */
-#face-1 video:last-child {
-  display: none;
+  transform: rotate(0deg);
+  width: 28%;
 }
 
-/* line 479, ../sass/style.scss */
 #face-2 {
   left: 110%;
   top: 30%;
 }
 
-/* line 484, ../sass/style.scss */
 #face-3 {
   left: -45%;
   top: 55%;
-  width: 32%;
+  width: 27%;
 }
 
-/* line 490, ../sass/style.scss */
 .face {
   animation: 0.9s 2s fade-in forwards;
   min-width: auto;
@@ -506,31 +500,31 @@ main .chrome .chrome-right-contents div:not(.chrome-line) {
     opacity: 1;
   }
 }
+
 @keyframes fade-out-shrink {
   to {
     opacity: 0;
     height: 0;
   }
 }
+
 @keyframes fade-out {
   to {
     opacity: 0;
   }
 }
-/* line 519, ../sass/style.scss */
+
 .announcement {
   opacity: 0;
   position: absolute;
 }
 
-/* line 524, ../sass/style.scss */
 .possums-shown {
   opacity: 1 !important;
   transition: visibility 0s, 1.75s 0.75s ease opacity !important;
   visibility: visible !important;
 }
 
-/* line 530, ../sass/style.scss */
 .possums {
   align-items: center;
   display: flex;
@@ -544,35 +538,33 @@ main .chrome .chrome-right-contents div:not(.chrome-line) {
   transition: visibility 2.5s, 1.25s 0s ease opacity;
   visibility: hidden;
   width: 100%;
-}
-/* line 544, ../sass/style.scss */
-.possums img {
-  border-radius: 5px;
-  position: absolute;
-  width: 350px;
-  box-shadow: 0px 0px 22px -15px black;
-}
-/* line 551, ../sass/style.scss */
-.possums .close-button {
-  color: #fffaf4;
-  cursor: pointer;
-  font-family: Arial;
-  font-size: 4rem;
-  left: 30px;
-  position: absolute;
-  transition: 2s opacity ease-in-out;
-  top: 30px;
-  z-index: 2;
+
+  img {
+    border-radius: 5px;
+    position: absolute;
+    width: 350px;
+    box-shadow: 0px 0px 22px -15px black;
+  }
+
+  .close-button {
+    color: #fffaf4;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 4rem;
+    left: 30px;
+    position: absolute;
+    transition: 2s opacity ease-in-out;
+    top: 30px;
+    z-index: 2;
+  }
 }
 
-/* line 564, ../sass/style.scss */
 .possum-wrapper {
   height: 50vh;
   width: 50vw;
   z-index: 1;
 }
 
-/* line 570, ../sass/style.scss */
 .heart {
   animation: 2s fade-in forwards ease-in-out;
   font-size: 40px;
@@ -582,103 +574,80 @@ main .chrome .chrome-right-contents div:not(.chrome-line) {
 }
 
 @media (min-width: 501px) and (max-width: 780px) {
-  /* line 579, ../sass/style.scss */
   #face-1 {
     left: 0;
     top: -10%;
   }
 
-  /* line 584, ../sass/style.scss */
   #face-2 {
     left: 70%;
     top: 33%;
   }
 
-  /* line 589, ../sass/style.scss */
   #face-3 {
     top: auto;
     bottom: -8%;
     left: -9%;
   }
 }
-@media only screen and (max-width: 500px) {
-  /* line 597, ../sass/style.scss */
+
+@media only screen and (max-width : 500px) {
   #checkerboard {
     font-size: 3rem;
   }
 
-  /* line 601, ../sass/style.scss */
   h1 {
     font-size: 4rem;
   }
 
-  /* line 605, ../sass/style.scss */
   p {
     font-size: 1.2rem;
     line-height: 1.8rem;
   }
 
-  /* line 610, ../sass/style.scss */
   li {
     font-size: 1.1rem;
   }
 
-  /* line 614, ../sass/style.scss */
   .wiggly-line {
     margin-top: -18px;
   }
 
-  /* line 618, ../sass/style.scss */
   #face-1 {
     left: 0;
     top: -10%;
   }
 
-  /* line 623, ../sass/style.scss */
   #face-2 {
     left: 70%;
     top: 33%;
   }
 
-  /* line 628, ../sass/style.scss */
   #face-3 {
     top: auto;
     bottom: -8%;
     left: -9%;
   }
 
-  /* line 634, ../sass/style.scss */
   .chrome-right-contents :first-child {
     display: none;
   }
 
-  /* line 638, ../sass/style.scss */
   main .window .todo {
     font-size: 1.5rem;
   }
 
-  /* line 642, ../sass/style.scss */
   .possums img {
     width: 250px;
   }
 }
+
 @media (prefers-reduced-motion) {
-  /* line 648, ../sass/style.scss */
   #checkerboard {
     animation-name: fade-out-shrink;
   }
 
-  /* line 652, ../sass/style.scss */
   h1 {
     animation: none;
-  }
-
-  /* line 658, ../sass/style.scss */
-  #face-1 video:first-child {
-    display: none;
-  }
-  /* line 662, ../sass/style.scss */
-  #face-1 video:last-child {
-    display: initial;
   }
 }
