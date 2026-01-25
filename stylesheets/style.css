@@ -139,97 +139,13 @@ body {
   }
 }
 
-#checkerboard-3d-wrapper {
-  animation: delayed-hide 0s 2.3s forwards;
-  height: 100%;
-  overflow: hidden;
-  perspective: 1300px;
-  position: absolute;
-  transform-style: preserve-3d;
-  width: 100%;
-  z-index: 3;
-}
-
-@keyframes delayed-hide {
-  to {
-    height: 0;
-    width: 0;
-  }
-}
-
-#checkerboard {
-  --check-size: 90px;
-  display: none;
-  align-items: center;
-  animation: spin 1.5s 0.8s forwards;
-  background-color: var(--checker-colour);
-  background-image: linear-gradient(45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(-45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(135deg, var(--checker-colour), var(--primary-bg));
-  background-size: var(--check-size) var(--check-size), var(--check-size) var(--check-size), var(--check-size) var(--check-size), var(--check-size) var(--check-size), 100% 100%;
-  background-position: calc(var(--check-size) / 2) calc(var(--check-size) / 2), 0 0, calc(-1 * var(--check-size) / 2) 0, 0 calc(var(--check-size) / 2), 0 0;
-  box-sizing: border-box;
-  color: var(--intro-text-colour);
-  display: flex;
-  font-family: Fondamento, Garamond, serif;
-  font-size: 4rem;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  top: 0;
-  transform: rotateX(0.00001deg) rotateZ(0.00001deg) translateZ(0.1px);
-  width: 100%;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotateX(0.00001deg) rotateZ(0.00001deg) translateZ(0.1px);
-  }
-
-  100% {
-    transform: rotateX(90deg) rotateZ(90deg);
-  }
-}
-
 h1 {
-  animation: shimmer 5s ease infinite;
-  color: rgb(159, 255, 175);
-  font-family: Cormorant;
-  font-size: 6rem;
-  -moz-background-clip: text;
-  -o-background-clip: text;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-image: -webkit-linear-gradient(45deg, rgb(159, 255, 175), rgb(69, 181, 255), rgb(255, 120, 248) 45%, rgb(255, 120, 248), rgb(255, 120, 248) 55%, rgb(69, 181, 255), rgb(159, 255, 175) 95%);
-  background-size: 200% 100%;
+  color: var(--intro-text-colour);
+  font-family: Fondamento, Garamond, serif;
+  font-size: 5.5rem;
+  letter-spacing: -0.1rem;
+  font-weight: normal;
   margin: 0 0 10px 0;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes shimmer {
-  from {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: 100% 100%;
-  }
-
-  to {
-    background-position: 0 0;
-  }
-}
-
-.wiggly-line {
-  --wiggle-size: 7px;
-  --grad-end: 52%;
-  --grad-start: 48%;
-
-  background-image: linear-gradient(45deg, transparent, transparent var(--grad-start), var(--wiggle-colour) var(--grad-start), var(--wiggle-colour) var(--grad-end), transparent var(--grad-end)), linear-gradient(-45deg, transparent, transparent var(--grad-start), var(--wiggle-colour) var(--grad-start), var(--wiggle-colour) var(--grad-end), transparent var(--grad-end));
-  background-size: calc(var(--wiggle-size) * 2) calc(var(--wiggle-size) * 2);
-  height: var(--wiggle-size);
-  margin-top: -20px;
-  position: relative;
-  width: 100%;
-  z-index: -1;
 }
 
 #pronouns {
@@ -283,7 +199,12 @@ li {
 
 #main-wrapper {
   align-items: flex-start;
-  background-color: var(--primary-bg);
+  --check-size: 90px;
+  background-color: var(--checker-colour);
+  background-image: linear-gradient(45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--primary-bg) 75%), linear-gradient(-45deg, var(--primary-bg) 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, var(--primary-bg) 75%);
+  background-size: var(--check-size) var(--check-size), var(--check-size) var(--check-size), var(--check-size) var(--check-size), var(--check-size) var(--check-size), 100% 100%;
+  background-position: calc(var(--check-size) / 2) calc(var(--check-size) / 2), 0 0, calc(-1 * var(--check-size) / 2) 0, 0 calc(var(--check-size) / 2), 0 0;
+  box-sizing: border-box;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -308,6 +229,17 @@ main {
   position: relative;
   top: 20%;
   z-index: 0;
+
+  &:before {
+    content: "";
+    background: radial-gradient(color-mix(in srgb, var(--primary-bg), transparent 12%), color-mix(in srgb, var(--primary-bg), transparent 40%) 50%, color-mix(in srgb, var(--primary-bg), transparent 100%) 70%);
+    height: 115%;
+    left: -40%;
+    position: absolute;
+    top: -8%;
+    width: 180%;
+    z-index: -1;
+  }
 
   .window-placeholder {
     align-items: center;
@@ -639,15 +571,5 @@ main {
 
   .possums img {
     width: 250px;
-  }
-}
-
-@media (prefers-reduced-motion) {
-  #checkerboard {
-    animation-name: fade-out-shrink;
-  }
-
-  h1 {
-    animation: none;
   }
 }
